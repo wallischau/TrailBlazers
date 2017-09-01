@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trail Blazer</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script href = "https://maps.googleapis.com/maps/api/directions/json?&mode=transit&origin=frontera+el+hierro&destination=la+restinga+el+hierro&departure_time=1399995076&key=AIzaSyA6zc2tlPx52ZNRx7xRJZu6KyTEdxBEDZs" type ="text/javascript"></script>
+    <style>
+      .container {
+        border: 1px solid black;
+        margin: 35px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+      <nav class = "navbar navbar-inverse">
+           <ul class = "nav navbar-nav">
+              <li>Login</li>
+              <li>Sign Up</li>
+           </ul>
+      </nav>
+      <div class ="jumbotron">
+          <h1>Trail Blazers</h1>
+          <h2>Finding accessible Trail Routes using public transportation</h2>
+          <h5>An effort to reduce pollution....</h5>
+      </div>
+      <div class = "container">
+           <form>
+                <div class = "form-group">
+                   <label>Search By Entering  Zipcode</label>
+                    <input type ="text"></br>
+                </div>
+                <h3>(Or)</h3>
+                <div class ="form-group">
+                  <label>Select State</label>
+                  <select>
+                       <option>Select State</option>
+                  </select>
+                </div>
+                <div class ="form-group">
+                  <label>City Name</label><br />
+                   <input type ="checkbox">City 1<br />
+                   <input type ="checkbox">City 2<br />
+                   <input type ="checkbox">City 3<br />
+                   <input type ="checkbox">City 4<br />
+                </div>
+                <br /> <br />
+                <div class ="form-group">
+                 <label>Select Radius<//label>
+                  <select>
+                       <option>25 miles</option>
+                       <option>50 miles</option>
+                       <option>75 miles</option>
+                  </select>
+                </div>
+           </form>
+     </div>
+           <div class ="container">
+            <h3>API Listing </h3>
+             <ul>
+               <li><a href = "https://developers.google.com/transi">Google Transit API</a></li>
+               <li><a href= "https://market.mashape.com/trailapi/trailapi">Trail API</a></li>
+             </ul>
+           </div>
+           <div class = "container">
+             <h3>Firebase</h3>
+             <ul>
+               <li>User Rating and Comments</li>
+               <li>User Account</li>
+             </ul>
+          </div>
+          <div class = "container">
+            <h3>Input Validation</h3>
+            <ul>
+              <li>Valid Zip Code</li>
+              <li>Valid City</li>
+              <li>Signup- Check for Username Existence</li>
+              <li>Signup - Check password for the Username</li>li>
+              <li>Creating an account - Check for the Existence of the Username</li>
+            </ul>
+         </div>
+          <div class = "container">
+              <h4>A Tabular Display of all the Trail Routes with Public transportation</h4>
+              <table id = "reptable">
+              </table>
+          </div>
+           <div class = "container">
+              <h4>A Tabular Display of all the Trail Routes without Public transportation (with details of Emission)</h4>
+          </div>
+          <script type = "text/javascript" src = "jsbase1.js"></script>
+
+  </body>
+</html>
