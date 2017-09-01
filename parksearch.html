@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>park search page</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&" -->
+  <!-- type="text/javascript"></script> -->
+  	<!-- <script type="text/javascript" src="maps.googleapis.com/map/api/geocode/"></script> -->
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script>
+    </head>
+<body>
+	<div id="park">
+	<br>
+	<form id="myform"> 
+	<label>Address: 
+		<input type="text" id="input-text-addr"> 
+		Radius	
+		<input type="text" id="input-text-radius"> 
+		<input type="submit" id="submit" class='search-btn' value="search">
+ 	</label>
+	</form>
+	<button id="back-btn" class = 'search-btn'style="visibility: hidden">Go Back</button>
+	</div> 
+
+	<div id="panel" style="width: 400px; float: left;"></div>
+	  <div id="map" style="width: 500px; height: 500px;"></div>
+		
+	</div>
+	
+
+
+
+<script type="text/javascript" src="assets/javascripts/transit.js"></script>
+<script type="text/javascript" src="assets/javascripts/parksearch.js"></script>
+</body>
+</html>
