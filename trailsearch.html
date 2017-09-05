@@ -16,17 +16,48 @@
 		State:	
 		<input type="text" id="input-trail-state"> 
 		Radius:	
-		<input type="text" id="input-trail-radius"> 
+		<input type="select" id="input-trail-radius"> 
+			<select>
+				<option value=“5”>5 miles</option>
+				<option value=“10”>10 miles</option>
+				<option value=“15”>15 miles</option>
+				<option value=“20”>20 miles</option>
+				<option value=“25”>25 miles</option>
+				<option value=“30”>30 miles</option>
+				<option value=“40”>40 miles</option>
+				<option value=“50”>50 miles</option>
+				<option value=“75”>75 miles</option>
+				<option value=“100”>100 miles</option>
+				<option value=“150”>150 miles</option>
+				<option value=“200”>200 miles</option>
+			</select>
+
 		<input type="submit" id="submit" class='search-btn' value="search">
- 	</label>
+	</label>
 	</form>
-	
+<br>
+<br>
+
+	<table id='trailTable' style='width:50%'>
+        <thead>
+          <tr>
+            <th>Trail Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Activities</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+	</table>
+
 	</div> 
 
 	<div id="panel" style="width: 400px; float: left;"></div>
 	  <div id="map" style="width: 500px; height: 500px;"></div>
 	
 	</div>
+</div>
 
 <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
 </body>
