@@ -3,11 +3,17 @@ const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 
 $(document).ready(function() {
 
-	$('#trail').on('click', '.search-btn', function(event) {
+	$('#trailForm').on('click', '.search-btn', function(event) {
 		event.preventDefault(); 
 
-		var radius = parseInt($("#input-trail-radius").val());
-		if (isNaN(radius)) {
+		var radius = 0;
+		var inputRadius = $("#input-trail-radius").val();
+		if (inputRadius !== null) {
+			// Need to remove double-quotes from inputRadius.
+			inputRadius = inputRadius.substring(1, inputRadius.length-1);
+			radius = parseInt(inputRadius);
+		}
+		if (isNaN(radius) || radius == 0) {
 			// Default to 25 if radius not specified.
 			radius = 25;
 		}
@@ -28,7 +34,8 @@ function queryTrailApi(lat, lon, radius) {
 	var limit = 50;
 	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius;
 	var headers = {"X-Mashape-Key": "h484kdqRk8mshMubKo8ocVlMlIerp1sUIoSjsn8W8HlEap2L4I"};
-	$.ajax({url: queryUrl, method: 'GET', headers: headers}).done(function(response) {			
+	$.ajax({url: queryUrl, method: 'GET', headers: headers}).done(function(response) {
+		$("#trailTable > tbody").html("");
 		for (i=0; i<response.places.length; i++) {
 			var activities = "";
 			for (j=0; j<response.places[i].activities.length; j++) {
@@ -39,6 +46,5 @@ function queryTrailApi(lat, lon, radius) {
 				response.places[i].state + "</td><td>" + activities + "</td></tr>");
 	
     	}
-
 	}); 
 }
