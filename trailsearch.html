@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script>
 </head>
 <body>
 <!-- NavBar -->
@@ -90,6 +91,16 @@
 				</table>
         	</div>
       	</div>
+        <div class="row">
+        <!--  left panel -->
+          <div class="col s12 m4">
+            <div id="panel"></div>
+          </div>
+          <!-- map on the right-->
+          <div class="col s12 m8">
+            <div id="map" style="height:300px"> </div>
+          </div> 
+        </div>
     </div>
   </div>
 <!-- Parallax Container 2 -->
@@ -182,5 +193,6 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
+  <script type="text/javascript" src="assets/javascripts/transit.js"></script>
   </body>
 </html>
