@@ -30,7 +30,19 @@ $(document).ready(function() {
 	});
 });
 		
+// var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function queryTrailApi(lat, lon, radius, city) {
+	//setup map
+	var image = { url:"assets/images/icons/trekking-pink-24.ico", 
+		size: new google.maps.Size(24,24), 
+		origin: new google.maps.Point(0,0),
+		anchor: new google.maps.Point(10,24) };
+	var map = new google.maps.Map(
+		document.getElementById('map'), {
+		zoom: 11,
+          MapTypeId: google.maps.MapTypeId.ROADMAP,
+		center: {lat: lat, lng: lon}
+	});
 	var limit = 50;
 	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q[city_cont]=" + city;
 	var headers = {"X-Mashape-Key": "h484kdqRk8mshMubKo8ocVlMlIerp1sUIoSjsn8W8HlEap2L4I"};
@@ -44,6 +56,12 @@ function queryTrailApi(lat, lon, radius, city) {
 
 			$("#trailTable > tbody").append("<tr><td>" + response.places[i].name + "</td><td>" + response.places[i].city + "</td><td>" +
 				response.places[i].state + "</td><td>" + activities + "</td></tr>");
+			var marker = new google.maps.Marker({
+				position: { lat: response.places[i].lat, lng: response.places[i].lon},
+				map:map,
+				title: response.places[i].name,
+				icon: image
+		});
 	
     	}
 	}); 
