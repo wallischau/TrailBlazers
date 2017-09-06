@@ -1,11 +1,15 @@
 
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
+const LIMIT = 50;
+var sourceAddr = "2199 S University Blvd, Denver CO";
 
 $(document).ready(function() {
 
 	$('#trailForm').on('click', '.search-btn', function(event) {
 		event.preventDefault(); 
 
+		//clear panel
+		$('#panel').empty();
 		var radius = 0;
 		var inputRadius = $("#input-trail-radius").val();
 		if (inputRadius !== null) {
@@ -17,8 +21,8 @@ $(document).ready(function() {
 			// Default to 25 if radius not specified.
 			radius = 25;
 		}
-		var city = $("#input-trail-city").val();
-		var state = $("#input-trail-state").val();
+		var city = $("#input-trail-city").val().trim();
+		var state = $("#input-trail-state").val().trim();
 		var location = city + "," + state;
 		var address = location.replace(/ /g, '+');
 		var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + gglGeoKey;
@@ -27,10 +31,9 @@ $(document).ready(function() {
 			var lon = response.results[0].geometry.location.lng;
 			queryTrailApi(lat, lon, radius, city);
 		});
-	});
-});
+	}); //on click search btn
+}); //ready
 		
-// var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function queryTrailApi(lat, lon, radius, city) {
 	//setup map
 	var image = { url:"assets/images/icons/trekking-pink-24.ico", 
@@ -39,14 +42,15 @@ function queryTrailApi(lat, lon, radius, city) {
 		anchor: new google.maps.Point(10,24) };
 	var map = new google.maps.Map(
 		document.getElementById('map'), {
-		zoom: 11,
+		zoom: 10,
           MapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: {lat: lat, lng: lon}
 	});
-	var limit = 50;
+	var limit = LIMIT;
 	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q[city_cont]=" + city;
 	var headers = {"X-Mashape-Key": "h484kdqRk8mshMubKo8ocVlMlIerp1sUIoSjsn8W8HlEap2L4I"};
 	$.ajax({url: queryUrl, method: 'GET', headers: headers}).done(function(response) {
+		console.log(response);
 		$("#trailTable > tbody").html("");
 		for (i=0; i<response.places.length; i++) {
 			var activities = "";
@@ -56,13 +60,38 @@ function queryTrailApi(lat, lon, radius, city) {
 
 			$("#trailTable > tbody").append("<tr><td>" + response.places[i].name + "</td><td>" + response.places[i].city + "</td><td>" +
 				response.places[i].state + "</td><td>" + activities + "</td></tr>");
-			var marker = new google.maps.Marker({
-				position: { lat: response.places[i].lat, lng: response.places[i].lon},
-				map:map,
-				title: response.places[i].name,
-				icon: image
-		});
+			//create map with icon marker for each trail
+			createMarker(response.places[i], map, image);
 	
-    	}
-	}); 
+    	} //for
+	}); //ajax
+} //queryTrailAPI
+
+//create map with markers for each trail
+//hover marker will show trail's name
+//click on marker show transit info
+function createMarker(place, map, img) {
+	var latlonDest = place.lat + ',' + place.lon;
+  	var infowindow = new google.maps.InfoWindow();
+  	var marker = new google.maps.Marker({
+		position: { lat: place.lat, lng: place.lon},
+    	map: map,
+		title: place.name,
+		icon: img
+  	});
+
+  	//click event to call transit info
+  	google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent(place.name);
+    	infowindow.open(map, this);
+    	//open new tab to do transit search
+   	 	getTransitInfo(sourceAddr, latlonDest);
+  	});
+}
+
+// show transit info map and direction
+function getTransitInfo(sourceAddr, destAddr) {
+	console.log(sourceAddr);
+	console.log(destAddr);
+	calcRoute(sourceAddr, destAddr);
 }
