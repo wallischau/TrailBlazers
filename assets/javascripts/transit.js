@@ -12,6 +12,9 @@ $('#submit').on("click", function(event) {
 	calcRoute(userInputFrom, userInputTo);
 });
 */
+
+//calculate route
+//source could be address or coord pair e.g. (lat,lon)
 function calcRoute(source, dest) {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -35,7 +38,7 @@ function calcRoute(source, dest) {
       console.error('DirectionsStatus is ' + status);
     }
   });
-  $('#back-btn').css('visibility', 'visible');
+  // $('#back-btn').css('visibility', 'visible');
 }
 
 function writeDirectionsSteps(steps) {
