@@ -1,7 +1,7 @@
 
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 const LIMIT = 50;
-var sourceAddr = "2199 S University Blvd, Denver CO";
+var sourceAddr = "";
 
 $(document).ready(function() {
 
@@ -21,6 +21,8 @@ $(document).ready(function() {
 			// Default to 25 if radius not specified.
 			radius = 25;
 		}
+		var startAddress = $("#input-trail-address").val().trim();
+		sourceAddr = startAddress;
 		var city = $("#input-trail-city").val().trim();
 		var state = $("#input-trail-state").val().trim();
 		var location = city + "," + state;
@@ -30,7 +32,8 @@ $(document).ready(function() {
 			var lat = response.results[0].geometry.location.lat;
 			var lon = response.results[0].geometry.location.lng;
 			queryTrailApi(lat, lon, radius, city);
-		});
+
+		}); console.log(sourceAddr);
 	}); //on click search btn
 }); //ready
 		
