@@ -20,13 +20,15 @@
 <!-- NavBar -->
   <nav class="blue" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">The "A" Team Tiger</a>
+      <a id="logo-container" href="#" class="brand-logo">Team Tiger</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home Page</a></li>
-        <li><a href="https://maps.google.com">Maps-Example</a></li>
+        <li><a href="trailsearch.html">Trail Results Page</a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="https://www.weather.com">Navbar Link</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.weather.com">Weather</a></li>
+        <li><a href="https://maps.google.com">Maps</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -42,7 +44,8 @@
           <h5 class="header col s12 white-text-text bold">Find trails accessible by public transit</h5>
         </div>
         <div class="row center">
-          <h5>Start Your Search Below.<br>Let's Go!</h5>
+        <a href="#" class="btn-large waves-effect waves-light teal lighten-1">Start Your Search Below</a>
+          <!-- <h5><mark>Start Your Search Below. Let's Go!</mark></h5> -->
         </div>
         <br><br>
       </div>
@@ -53,8 +56,8 @@
   <div class="container">
     <div class="section">
       	<div class="row">
-      		<!-- Column 1 -->
-        	<div class="col s12 m4">
+      		<!-- Input -->
+        	<div class="col s12 m12">
           		<form id="trailForm"> 
           <label for="input-trail-address">My Current Address:</label> 
           <input type="text" id="input-trail-address">     
@@ -80,10 +83,12 @@
 					</select>
 					<br>
 					<input type="submit" id="submit" class='search-btn' value="search">
-				</form>
+				    </form>
         	</div>
- 			<!-- Column 2 -->
-        	<div class="col s12 m8">
+        </div> <!-- row -->
+        <div class="row form2">
+ 			<!-- Trail list -->
+        	<div class="col s12 m12">
         		<table id="trailTable" class="highlight">
        				<thead>
         				<tr>
@@ -95,17 +100,30 @@
         			</thead>
         			<tbody>
         			</tbody>
-				</table>
+				    </table>
         	</div>
-      	</div>
-        <div class="row">
+      	</div> <!-- row -->
+
+        <div class="row form2">
+          <div class="col s12 m8">
+            <div id="form2-map" style="height:300px"> </div>
+          </div> 
+        </div> <!-- row -->
+
+        <div class="row form3" id="form3-trail-info">
+          <!--placeholder for trail detail-->
+        </div>
+        <div class="row form3" id="form3-weather">
+          <!--placeholder for weather  -->
+        </div>
+        <div class="row form3">
         <!--  left panel -->
           <div class="col s12 m4">
-            <div id="panel"></div>
+            <div id="form3-panel"></div>
           </div>
           <!-- map on the right-->
           <div class="col s12 m8">
-            <div id="map" style="height:300px"> </div>
+            <div id="form3-map" style="height:300px"> </div>
           </div> 
         </div>
     </div>
@@ -164,7 +182,7 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">The A Team Tiger Bios</h5>
+          <h5 class="white-text">Team Tiger Bios</h5>
           <p class="grey-text text-lighten-4">We are a team of developers working on this project like it's our full-time job. Our goal is to build useful, beautiful, eco-oriented solutions. Hit us up!
         </div>
         <div class="col l3 s12">
@@ -192,9 +210,9 @@
     <div class="footer-copyright">
       <div class="container">
       Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      <h4><mark><font color="white" face="Webdings" size="4">P</font><font
+      <h4><font color="white" face="Webdings" size="4">P</font><font
       color="white" face="verdana,arial,helvetica" size="2"> <strong>Please
-      consider the environment before printing</strong></font></mark></h4>
+      consider the environment before printing</strong></font></h4>
       </div>
     </div>
   </footer>
@@ -204,5 +222,8 @@
   <script src="js/init.js"></script>
   <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
   <script type="text/javascript" src="assets/javascripts/transit.js"></script>
+  <!-- Auto Populates Country/City/State -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+  <script src="//geodata.solutions/includes/countrystatecity.js"></script>
   </body>
 </html>
