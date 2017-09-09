@@ -45,7 +45,7 @@ function queryTrailApi(lat, lon, radius, state) {
 		origin: new google.maps.Point(0,0),
 		anchor: new google.maps.Point(10,24) };
 	var map = new google.maps.Map(
-		document.getElementById('map'), {
+		document.getElementById('form2-map'), {
 		zoom: 10,
           MapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: {lat: lat, lng: lon}
