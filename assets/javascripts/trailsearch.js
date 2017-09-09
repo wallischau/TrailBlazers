@@ -32,26 +32,26 @@ $(document).ready(function() {
 		$.ajax({url: queryUrl, method: 'GET'}).done(function(response) {
 			var lat = response.results[0].geometry.location.lat;
 			var lon = response.results[0].geometry.location.lng;
-			queryTrailApi(lat, lon, radius, city);
+			queryTrailApi(lat, lon, radius, state);
 
 		}); console.log(sourceAddr);
 	}); //on click search btn
 }); //ready
 		
-function queryTrailApi(lat, lon, radius, city) {
+function queryTrailApi(lat, lon, radius, state) {
 	//setup map
 	var image = { url:"assets/images/icons/trekking-pink-24.ico", 
 		size: new google.maps.Size(24,24), 
 		origin: new google.maps.Point(0,0),
 		anchor: new google.maps.Point(10,24) };
 	var map = new google.maps.Map(
-		document.getElementById('map'), {
+		document.getElementById('form2-map'), {
 		zoom: 10,
           MapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: {lat: lat, lng: lon}
 	});
 	var limit = LIMIT;
-	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q\[city_cont\]=" + city;
+	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q\[state_cont\]=" + state;
 	// EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD
 	var headers = {"X-Mashape-Key": "EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD"};
 	//Header Prior to 9/6/17
