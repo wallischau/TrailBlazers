@@ -50,7 +50,7 @@ function queryTrailApi(lat, lon, radius, city) {
 		center: {lat: lat, lng: lon}
 	});
 	var limit = LIMIT;
-	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q[city_cont]=" + city;
+	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q\[city_cont\]=" + city;
 	// EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD
 	var headers = {"X-Mashape-Key": "EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD"};
 	//Header Prior to 9/6/17
