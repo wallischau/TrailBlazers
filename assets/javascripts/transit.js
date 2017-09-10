@@ -18,7 +18,7 @@ $('#submit').on("click", function(event) {
 function calcRoute(source, dest) {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('form3-map'), {
     zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
@@ -42,7 +42,7 @@ function calcRoute(source, dest) {
 }
 
 function writeDirectionsSteps(steps) {
-  var directions = $('#panel');
+  var directions = $('#form3-panel');
   directions.html('');
   for (var i = 0; i < steps.length; i++) {
     directions.append('<br/><br/>' + steps[i].instructions + '<br/>' + steps[i].distance.text);
