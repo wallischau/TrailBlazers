@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TrailBlazers Trail Search</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script>
+</head>
+<body>
+<!-- NavBar -->
+  <nav class="blue" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">The "A" Team Tiger</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home Page</a></li>
+        <li><a href="https://maps.google.com">Maps-Example</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="https://www.weather.com">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+<!-- End Navbar -->
+<!-- Header Section: Parallax Section Container 1 -->
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center white-text text-lighten-2">TrailBlazers Trail Search</h1>
+        <div class="row center">
+          <h5 class="header col s12 white-text-text bold">Find trails accessible by public transit</h5>
+        </div>
+        <div class="row center">
+          <h3 id="visual-button" class="btn-large waves-effect waves-light teal lighten-1">Start Your Search Below. Let's Go!</h3>
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div class="parallax"><img src="assets/images/HCdz6T.jpg" height="400px" width= "400px" alt="Unsplashed background img 1"> </div>
+    </div>
+ 
+  <div class="container">
+    <div class="section">
+      	<div class="row">
+      		<!-- Column 1 -->
+        	<div class="col s12 m4">
+          		<form id="trailForm"> 
+					<label for="input-trail-city">City:</label> 
+					<input type="text" id="input-trail-city"> 
+					<label for="input-trail-state">State:</label>	
+					<input type="text" id="input-trail-state"> 
+					<label for="input-trail-radius">Radius</label>
+					<select id="input-trail-radius" class="browser-default">
+						<option value="" disabled selected>Choose your option</option>
+						<option value=“5”>5 miles</option>
+						<option value=“10”>10 miles</option>
+						<option value=“15”>15 miles</option>
+						<option value=“20”>20 miles</option>
+						<option value=“25”>25 miles</option>
+						<option value=“30”>30 miles</option>
+						<option value=“40”>40 miles</option>
+						<option value=“50”>50 miles</option>
+						<option value=“75”>75 miles</option>
+						<option value=“100”>100 miles</option>
+						<option value=“150”>150 miles</option>
+						<option value=“200”>200 miles</option>
+					</select>
+					<br>
+					<input type="submit" id="submit" class='search-btn' value="search">
+				</form>
+        	</div>
+ 			<!-- Column 2 -->
+        	<div class="col s12 m8">
+        		<table id="trailTable" class="highlight">
+       				<thead>
+        				<tr>
+			            	<th>Trail Name</th>
+			            	<th>City</th>
+			            	<th>State</th>
+			            	<th>Activities</th>
+		          		</tr>
+        			</thead>
+        			<tbody>
+        			</tbody>
+				</table>
+        	</div>
+      	</div>
+        <div class="row">
+        <!--  left panel -->
+          <div class="col s12 m4">
+            <div id="panel"></div>
+          </div>
+          <!-- map on the right-->
+          <div class="col s12 m8">
+            <div id="map" style="height:300px"> </div>
+          </div> 
+        </div>
+    </div>
+  </div>
+<!-- Parallax Container 2 -->
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 white-text bold">Let us help you find your next adventure, while reducing your carbon footprint</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="assets/images/mtnkayak.jpg" height="500px" width="500px" alt="Unsplashed background img 2"></div>
+  </div>
+  <!-- End PContainer 2 -->
+<!-- Resources Section -->
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Resources and Tips for Trail Expedition</h4>
+          <p class="left-align light"><br>
+          	<ul>
+          		<li>Take out ONLY what you took in, take out ALL that you took in</li><br>
+          		<li>Respect the wildlife and environs by not feeding the creatures - It's safe for you and safe for them</li><br>
+          		<li>Stay on designated, marked paths</li><br>
+          		<li>Take sunscreen, hats, natural and eco-friendly repellents, and plenty of water</li><br>
+          		<li>Take pictures, but don't take the flowers, rocks, trees, gravel, etc.</li><br>
+          		<li>Let someone know your destination, and your time of return</li><br>
+          		<li>Keep in accordance to all trail/park guidelines and hours</li><br>
+          		<li>Remember that noise pollution is also pollution - Respect your fellow adventurers and Shhhhhh, please</li><br>
+          		<li>Live, Learn, and Love the Great Outdoors!</li><br>
+          	</ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Parallalex Container 3 -->
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 white-text bold">Be Safe! Check the Weather Before you Go</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="assets/images/background3.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+<!-- Footer -->
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">The A Team Tiger Bios</h5>
+          <p class="grey-text text-lighten-4">We are a team of developers working on this project like it's our full-time job. Our goal is to build useful, beautiful, eco-oriented solutions. Hit us up!
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contact Us</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Wallis Chau</a></li>
+            <li><a class="white-text" href="#!">Sangeetha Kaliaperumal</a></li>
+            <li><a class="white-text" href="#!">Ed Quintana</a></li>
+            <li><a class="white-text" href="#!">Kelly Wenzel</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contacts</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      <h4><mark><font color="#009900" face="Webdings" size="4">P</font><font
+      color="#009900" face="verdana,arial,helvetica" size="2"> <strong>Please
+      consider the environment before printing</strong></font></mark></h4>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
+  <script type="text/javascript" src="assets/javascripts/transit.js"></script>
+  </body>
+</html>
