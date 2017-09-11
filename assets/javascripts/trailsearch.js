@@ -5,8 +5,8 @@ const LIMIT = 50;
 var sourceAddr = "";
 
 $(document).ready(function() {
-
-	$('#trailForm').on('click', '.search-btn', function(event) {
+//'.search-btn'
+	$('#trailForm').on('click', '#submit', function(event) {
 		event.preventDefault(); 
 
 		//clear panel
