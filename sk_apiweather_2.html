@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather API - Google Maps Integration </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  </head>
+  <body>
+     <div class = "jumbotron">
+         <h1>Input Section not yet Validated or used</h1>
+          <form>
+             <div class = "form-group">
+                   <label>"Enter Starting Address: "</label>
+                  <input id = "fromaddr" type = "text"><br >
+             </div>
+             <div class = "form-group">
+                   <label>"Enter Destination Address: "</label>
+                  <input id = "toaddr" type = " text"><br >
+             </div>
+          </form>
+     </div>
+      <div class = "container">
+          <table>
+            <caption>A Response from Weather API - Citi ID</caption>
+            <thead>
+              <tr class = "row">
+                 <th class = "col col-lg-6">Total Array response:</th>
+                 <th class = "col col-lg-6" id = "total1"></th>
+              </tr>
+              <tr class = "row">
+                 <th class = "col col-md-2">Date</th>
+                 <th class = "col col-md-2">Weather</th>
+                 <th class = "col col-md-2">ICON</th>
+                 <th class = "col col-md-2">Temperatur</th>
+                 <th class = "col col-md-2">Wind Speed</th>
+                 <th class = "col col-md-2">Feels Like</th>
+              </tr>
+            </thead>
+            <tbody id = "details1">
+
+            </tbody>
+        </table>
+        <br /><br />
+          <h3>Another Response</h3>
+            <br /><br />
+          <table>
+            <caption>A Response from Weather API - Zipcode</caption>
+            <thead>
+                      <tr class = "row">
+                      <th>Response for APi:</th>
+                      </tr>
+                      <tr class = "row" id = "total2">
+                      </tr>
+                      <tr class = "row">
+                         <th class = "col col-md-2">Temperature</th>
+                         <th class = "col col-md-2">Weather</th>
+                         <th class = "col col-md-2">Icon</th>
+                         <th class = "col col-md-2">Wind Speed</th>
+                         <th class = "col col-md-2">Feels Like</th>
+                      </tr>
+            </thead>
+            <tbody id = "details2">
+
+            </tbody>
+          </table>
+          <br /><br />
+          <h3>Another Response</h3>
+            <br /><br />
+          <table>
+            <caption>A Response from Weather API - Latitude &mp; Longitude</caption>
+            <thead>
+              <tr class = "row">
+                 <th class = "col col-md-2">Total Array response:</th>
+                 <th class = "col col-md-2" id = "total3"></th>
+              </tr>
+              <tr class = "row">
+                 <th class = "col col-md-2">Temperature</th>
+                 <th class = "col col-md-2">Weather</th>
+                 <th class = "col col-md-2">Description</th>
+                 <th class = "col col-md-2">Icon</th>
+                 <th class = "col col-md-2">Wind Speed</th>
+                 <th class = "col col-md-2">Feels Like</th>
+              </tr>
+            </thead>
+            <tbody id = "details3">
+
+            </tbody>
+          </table>
+      </div>
+      <script type = "text/javascript" src ="./sk_apiweatherjs_2.js"></script>
+
+  </body>
+</html>

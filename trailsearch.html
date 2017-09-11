@@ -14,19 +14,21 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script>
+<!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script> -->
 </head>
 <body>
 <!-- NavBar -->
   <nav class="blue" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">The "A" Team Tiger</a>
+      <a id="logo-container" href="#" class="brand-logo">Team Tiger</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home Page</a></li>
-        <li><a href="https://maps.google.com">Maps-Example</a></li>
+        <li><a href="trailsearch.html">Trail Results Page</a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="https://www.weather.com">Navbar Link</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.weather.com">Weather</a></li>
+        <li><a href="https://maps.google.com">Maps</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -37,31 +39,93 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center white-text text-lighten-2">TrailBlazers Trail Search</h1>
+        <h1 class="header center white-text text-lighten-2">Trail Search</h1>
         <div class="row center">
           <h5 class="header col s12 white-text-text bold">Find trails accessible by public transit</h5>
         </div>
         <div class="row center">
-          <h5>Start Your Search Below.<br>Let's Go!</h5>
+        <a href="#" class="btn-large waves-effect waves-light teal lighten-1" id="startSearch">Start Your Search Below</a>
         </div>
         <br><br>
       </div>
     </div>
-    <div class="parallax"><img src="assets/images/HCdz6T.jpg" height="400px" width= "400px" alt="Unsplashed background img 1"> </div>
+  <div class="parallax"><img src="assets/images/HCdz6T.jpg" height="400px" width= "400px" alt="Unsplashed background img 1"> </div>
     </div>
- 
   <div class="container">
     <div class="section">
-      	<div class="row">
+      <div class="row">
       		<!-- Input -->
-        	<div class="col s12 m12">
-          		<form id="trailForm"> 
-          <label for="input-trail-address">My Current Address:</label> 
-          <input type="text" id="input-trail-address">     
-					<label for="input-trail-city">City:</label> 
-					<input type="text" id="input-trail-city"> 
-					<label for="input-trail-state">State:</label>	
-					<input type="text" id="input-trail-state"> 
+      <div class="col s8 m8">
+       <form id="trailForm"> 
+          <label for="input-trail-address">Starting Address:</label>
+           <input id="pac-input" type="text" id="input-trail-address" placeholder="Enter Address You Wish to Transit From">
+            <div id="map"></div>
+<!--           <label for="input-trail-address">Starting Address:</label> 
+          <input type="text" id="input-trail-address"> -->
+          <label for="input-trail-city">City:</label> 
+          <input type="text" id="input-trail-city"> 
+<!-- Drop down for city -->
+<!--      <label for="input-trail-city">City</label>
+            <select id="input-trail-city" class="browser-default">
+            <option value="" disabled selected>Select City</option>
+            <select name="city" class="cities" id="cityId">
+            </select> -->
+          <label for="input-trail-state">State</label>
+            <select id="input-trail-state" class="browser-default">
+              <option value="" disabled selected>Select State</option>
+                <option value="Alabama" stateid="AL" id="input-trail-state">Alabama</option>
+                <option value="Alaska" stateid="AK" id="input-trail-state">Alaska</option>
+                <option value="Arizona" stateid="AZ" id="input-trail-state">Arizona</option>
+                <option value="Arkansas" stateid="AR" id="input-trail-state">Arkansas</option>
+                <option value="California" stateid="CA" id="input-trail-state">California</option>
+                <option value="Colorado" stateid="CO" id="input-trail-state">Colorado</option>
+                <option value="Connecticut" stateid="CT" id="input-trail-state">Connecticut</option>
+                <option value="Delaware" stateid="DE" id="input-trail-state">Delaware</option>
+                <option value="Florida" stateid="FL" id="input-trail-state">Florida</option>
+                <option value="Georgia" stateid="GA" id="input-trail-state">Georgia</option>
+                <option value="Hawaii" stateid="HI" id="input-trail-state">Hawaii</option>
+                <option value="Idaho" stateid="ID" id="input-trail-state">Idaho</option>
+                <option value="Illinois" stateid="IL" id="input-trail-state">Illinois</option>
+                <option value="Indiana" stateid="IN" id="input-trail-state">Indiana</option>
+                <option value="Iowa" stateid="IA" id="input-trail-state">Iowa</option>
+                <option value="Kansas" stateid="KS" id="input-trail-state">Kansas</option>
+                <option value="Kentucky" stateid="KY" id="input-trail-state">Kentucky</option>
+                <option value="Louisiana" stateid="LA" id="input-trail-state">Louisiana</option>
+                <option value="Maine" stateid="ME" id="input-trail-state">Maine</option>
+                <option value="Maryland" stateid="MD" id="input-trail-state">Maryland</option>
+                <option value="Massachusetts" stateid="MA" id="input-trail-state">Massachusetts</option>
+                <option value="Michigan" stateid="MI" id="input-trail-state">Michigan</option>
+                <option value="Minnesota" stateid="MN" id="input-trail-state">Minnesota</option>
+                <option value="Mississippi" stateid="MS" id="input-trail-state">Mississippi</option>
+                <option value="Missouri" stateid="MO" id="input-trail-state">Missouri</option>
+                <option value="Montana" stateid="MT" id="input-trail-state">Montana</option>
+                <option value="Nebraska" stateid="NE" id="input-trail-state">Nebraska</option>
+                <option value="Nevada" stateid="NV" id="input-trail-state">Nevada</option>
+                <option value="New Hampshire" stateid="NH" id="input-trail-state">New Hampshire</option>
+                <option value="New Jersey" stateid="NJ" id="input-trail-state">New Jersey</option>
+                <option value="New Mexico" stateid="NM" id="input-trail-state">New Mexico</option>
+                <option value="New York" stateid="NY" id="input-trail-state">New York</option>
+                <option value="North Carolina" stateid="NC" id="input-trail-state">North Carolina</option>
+                <option value="North Dakota" stateid="ND" id="input-trail-state">North Dakota</option>
+                <option value="Ohio" stateid="OH" id="input-trail-state">Ohio</option>
+                <option value="Oklahoma" stateid="OK" id="input-trail-state">Oklahoma</option>
+                <option value="Oregon" stateid="OR" id="input-trail-state">Oregon</option>
+                <option value="Pennsylvania" stateid="PA" id="input-trail-state">Pennsylvania</option>
+                <option value="Rhode Island" stateid="RI" id="input-trail-state">Rhode Island</option>
+                <option value="South Carolina" stateid="SC" id="input-trail-state">South Carolina</option>
+                <option value="South Dakota" stateid="SD" id="input-trail-state">South Dakota</option>
+                <option value="Tennessee" stateid="TN" id="input-trail-state">Tennessee</option>
+                <option value="Texas" stateid="TX" id="input-trail-state">Texas</option>
+                <option value="Utah" stateid="UT" id="input-trail-state">Utah</option>
+                <option value="Vermont" stateid="VT" id="input-trail-state">Vermont</option>
+                <option value="Virginia" stateid="VA" id="input-trail-state">Virginia</option>
+                <option value="Washington" stateid="WA" id="input-trail-state">Washington</option>
+                <option value="Washington,D.C" stateid="DC" id="input-trail-state">Washington,D.C</option>
+                <option value="West Virginia" stateid="WV" id="input-trail-state">West Virginia</option>
+                <option value="Wisconsin" stateid="WI" id="input-trail-state">Wisconsin</option>
+                <option value="Wyoming" stateid="WY" id="input-trail-state">Wyoming</option>
+              </select>              
+
 					<label for="input-trail-radius">Radius</label>
 					<select id="input-trail-radius" class="browser-default">
 						<option value="" disabled selected>Choose your option</option>
@@ -75,13 +139,21 @@
 						<option value=“50”>50 miles</option>
 						<option value=“75”>75 miles</option>
 						<option value=“100”>100 miles</option>
-						<option value=“150”>150 miles</option>
-						<option value=“200”>200 miles</option>
 					</select>
 					<br>
-					<input type="submit" id="submit" class='search-btn' value="search">
+					<!-- <input type="submit" id="submit" class='search-btn' value="search"> -->
+          <button type="button" id="submit" class="btn btn-success btn-sm">Search</button>
 				    </form>
         	</div>
+<!-- Weather -->
+      <div class="col s4 m4" id="currentWeather">
+        <h6><span id="city"></span></h6>
+        <p><span id="descriptionWeather"></span></p>
+<!--         <img id="weatherIcon" /> -->
+        <p><span id="temperature"></span></p>
+      </div>
+
+<!-- End Weather -->
         </div> <!-- row -->
         <div class="row form2">
  			<!-- Trail list -->
@@ -146,21 +218,7 @@
       <div class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4><a href="resources.html">Click Here for Resources and Tips for Trail Expeditions</a></h4>
-        
-          <!-- <p class="left-align light"><br>
-          	<ul class="list-group">
-          		<li class="list-group-item active" class="btn btn-info btn-lg" id="active">Take out ONLY what you took in, take out ALL that you took in</li><br>
-          		<li class="list-group-item">Respect the wildlife and environs by not feeding the creatures - It's safe for you and safe for them</li><br>
-          		<li class="list-group-item active" id="active">Stay on designated, marked paths</li><br>
-          		<li class="list-group-item">Take sunscreen, hats, natural and eco-friendly repellents, and plenty of water</li><br>
-          		<li class="list-group-item active" id="active">Take pictures, but don't take the flowers, rocks, trees, gravel, etc.</li><br>
-          		<li class="list-group-item">Let someone know your destination, and your time of return</li><br>
-          		<li class="list-group-item active" id="active">Keep in accordance to all trail/park guidelines and hours</li><br>
-          		<li class="list-group-item">Remember that noise pollution is also pollution - Respect your fellow adventurers and Shhhhhh, please</li><br>
-          		<li class="list-group-item active" id="active">Live, Learn, and Love the Great Outdoors!</li><br>
-          	</ul>
-          </p> -->
+          <h5><a href="resources.html">Click Here for Resources and Tips for Trail Expeditions</a></h5>
         </div>
       </div>
     </div>
@@ -182,7 +240,7 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">The A Team Tiger Bios</h5>
+          <h5 class="white-text">Team Tiger Bios</h5>
           <p class="grey-text text-lighten-4">We are a team of developers working on this project like it's our full-time job. Our goal is to build useful, beautiful, eco-oriented solutions. Hit us up!
         </div>
         <div class="col l3 s12">
@@ -196,23 +254,14 @@
           <h6><a class="white-text"><p>&#9851; Recycle This Page.<br>Share with Your Friends!</p></a></h6>
           <!-- PLACE TWITTER, FACEBOOK, and LINKEDIN LINKS HERE -->
         </div>
-        <!-- <div class="col l3 s12">
-          <h5 class="white-text">Contacts</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div> -->
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
       Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      <h4><mark><font color="white" face="Webdings" size="4">P</font><font
+      <h4><font color="white" face="Webdings" size="4">P</font><font
       color="white" face="verdana,arial,helvetica" size="2"> <strong>Please
-      consider the environment before printing</strong></font></mark></h4>
+      consider the environment before printing</strong></font></h4>
       </div>
     </div>
   </footer>
@@ -222,5 +271,12 @@
   <script src="js/init.js"></script>
   <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
   <script type="text/javascript" src="assets/javascripts/transit.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
+&libraries=places&callback=initMap"
+        async defer></script>
+  <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
+
+
+
   </body>
 </html>
