@@ -20,7 +20,7 @@ function callweatherbylatlong(v_lat,v_long)
                     method:"GET"
                   }).done(function(response)
                   {
-                        console.log("The Current Weather : "+response);
+                        console.log("The Current Weather : ", response);
 
                    });
 }
