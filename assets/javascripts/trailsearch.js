@@ -1,5 +1,5 @@
 
-
+//Global Variables
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 const LIMIT = 20;
 var sourceAddr = "";
@@ -8,9 +8,16 @@ var transitAvail = 0;
 var curWeather = 0;
 var transitTime = 0;
 
-$(document).ready(function() {
+//Sets focus on Starting Address Field after clicking on the Start Search Button
+$( "#startSearch" ).click(function() {
+  $( "#pac-input").focus();
+});
 
-	$('#trailForm').on('click', '.search-btn', function(event) {
+//Form Submission Function-Passes Values from input form to the Trails API, passes values to Google API
+$(document).ready(function() {
+//'.search-btn'
+
+	$('#trailForm').on('click', '#submit', function(event) {
 		event.preventDefault(); 
 
 		//clear panel
@@ -26,7 +33,7 @@ $(document).ready(function() {
 			// Default to 25 if radius not specified.
 			radius = 25;
 		}
-		var startAddress = $("#input-trail-address").val().trim();
+		var startAddress = $("#pac-input").val().trim();
 		sourceAddr = startAddress;
 		var city = $("#input-trail-city").val().trim();
 		var state = $("#input-trail-state").val().trim();
@@ -107,6 +114,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
     	} //for
 	}); //ajax
 } //queryTrailAPI
+
 
 //create map with markers for each trail
 //hover marker will show trail's name
