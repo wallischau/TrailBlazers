@@ -1,9 +1,9 @@
 
 //Global Variables
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
-const LIMIT = 20;
+const LIMIT = 40;
 var sourceAddr = "";
-var trailResonse;
+var trailResponse;
 var transitAvail = 0;
 var curWeather = 0;
 var transitTime = 0;
@@ -104,10 +104,15 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 			else if (i<18) {
 				setTimeout(getTransitInfo, 500*i, sourceAddr, latlonDest, i, false);
 			}
-			else {
+			else if (i<27) {
 				setTimeout(getTransitInfo, 700*i, sourceAddr, latlonDest, i, false);
 			}
+			else {
+				setTimeout(getTransitInfo, 800*i, sourceAddr, latlonDest, i, false);
+			}
 
+			//update current weather
+			callweatherbylatlong(response.places[i].lat, response.places[0].lon, i);
 			//create map with icon marker for each trail
 			createMarker(response.places[i], map, image);
 	
