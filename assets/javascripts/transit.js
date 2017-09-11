@@ -15,7 +15,7 @@ $('#submit').on("click", function(event) {
 
 //calculate route
 //source could be address or coord pair e.g. (lat,lon)
-function calcRoute(source, dest) {
+function calcRoute(source, dest, index, boolShowMap) {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
   var map = new google.maps.Map(document.getElementById('form3-map'), {
@@ -28,18 +28,42 @@ function calcRoute(source, dest) {
     destination: dest,
     travelMode: google.maps.DirectionsTravelMode.TRANSIT,
   };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      console.log(response);
-      directionsDisplay.setDirections(response);
-      writeDirectionsSteps(directionsDisplay.directions.routes[0].legs[0].steps);
-    }
+
+  directionsService.route(request, function(response, status ) {
+    //don't show map
+    if (!boolShowMap) {
+      // console.log(response);
+      console.log(status + " " + index);
+      //update td-transit
+      if (status == google.maps.DirectionsStatus.OK) {
+          $('#row-' + index + " td.td-transit").html('YES');
+          $('#row-' + index + " td.td-time").html(response.routes[0].legs[0].duration.text);
+          console.log(response.routes[0].legs[0].duration);
+      }
+      else if (status != "OVER_QUERY_LIMIT") {
+          $('#row-' + index + " td.td-transit").html('NO');
+          $('#row-' + index + " td.td-time").html("N/A");
+          console.error('DirectionsStatus is ' + status);
+      }
+      //over query limit
+      else {
+        console.log(index + " " + status);
+      }
+    } //if !boolShowMap
+    //show map
     else {
-      console.error('DirectionsStatus is ' + status);
-    }
-  });
-  // $('#back-btn').css('visibility', 'visible');
-}
+      console.log('here2');
+      if (status == google.maps.DirectionsStatus.OK) {
+        console.log(response);
+        directionsDisplay.setDirections(response);
+        writeDirectionsSteps(directionsDisplay.directions.routes[0].legs[0].steps);
+      }
+      else {
+        console.error('DirectionsStatus is ' + status);
+      }
+    } //else
+  });  //route
+}//calroute
 
 function writeDirectionsSteps(steps) {
   var directions = $('#form3-panel');
