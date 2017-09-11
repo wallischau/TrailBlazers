@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script>
+<!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script> -->
 </head>
 <body>
 <!-- NavBar -->
@@ -39,30 +39,31 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center white-text text-lighten-2">TrailBlazers Trail Search</h1>
+        <h1 class="header center white-text text-lighten-2">Trail Search</h1>
         <div class="row center">
           <h5 class="header col s12 white-text-text bold">Find trails accessible by public transit</h5>
         </div>
         <div class="row center">
-        <a href="#" class="btn-large waves-effect waves-light teal lighten-1">Start Your Search Below</a>
-          <!-- <h5><mark>Start Your Search Below. Let's Go!</mark></h5> -->
+        <a href="#" class="btn-large waves-effect waves-light teal lighten-1" id="startSearch">Start Your Search Below</a>
         </div>
         <br><br>
       </div>
     </div>
-    <div class="parallax"><img src="assets/images/HCdz6T.jpg" height="400px" width= "400px" alt="Unsplashed background img 1"> </div>
+  <div class="parallax"><img src="assets/images/HCdz6T.jpg" height="400px" width= "400px" alt="Unsplashed background img 1"> </div>
     </div>
- 
   <div class="container">
     <div class="section">
-      	<div class="row">
+      <div class="row">
       		<!-- Input -->
-        	<div class="col s10 m10">
-           <form id="trailForm"> 
-            <label for="input-trail-address">Starting Address:</label> 
-              <input type="text" id="input-trail-address">
-              <label for="input-trail-city">City:</label> 
-              <input type="text" id="input-trail-city"> 
+      <div class="col s8 m8">
+       <form id="trailForm"> 
+          <label for="input-trail-address">Starting Address:</label>
+           <input id="pac-input" type="text" id="input-trail-address" placeholder="Enter Address You Wish to Transit From">
+            <div id="map"></div>
+<!--           <label for="input-trail-address">Starting Address:</label> 
+          <input type="text" id="input-trail-address"> -->
+          <label for="input-trail-city">City:</label> 
+          <input type="text" id="input-trail-city"> 
 <!-- Drop down for city -->
 <!--      <label for="input-trail-city">City</label>
             <select id="input-trail-city" class="browser-default">
@@ -141,9 +142,18 @@
 					</select>
 					<br>
 					<!-- <input type="submit" id="submit" class='search-btn' value="search"> -->
-          <button type="button" id="submit" class="btn btn-success">Search</button>
+          <button type="button" id="submit" class="btn btn-success btn-sm">Search</button>
 				    </form>
         	</div>
+<!-- Weather -->
+      <div class="col s4 m4" id="currentWeather">
+        <h6><span id="city"></span></h6>
+        <p><span id="descriptionWeather"></span></p>
+<!--         <img id="weatherIcon" /> -->
+        <p><span id="temperature"></span></p>
+      </div>
+
+<!-- End Weather -->
         </div> <!-- row -->
         <div class="row form2">
  			<!-- Trail list -->
@@ -206,20 +216,6 @@
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h5><a href="resources.html">Click Here for Resources and Tips for Trail Expeditions</a></h5>
-        
-          <!-- <p class="left-align light"><br>
-          	<ul class="list-group">
-          		<li class="list-group-item active" class="btn btn-info btn-lg" id="active">Take out ONLY what you took in, take out ALL that you took in</li><br>
-          		<li class="list-group-item">Respect the wildlife and environs by not feeding the creatures - It's safe for you and safe for them</li><br>
-          		<li class="list-group-item active" id="active">Stay on designated, marked paths</li><br>
-          		<li class="list-group-item">Take sunscreen, hats, natural and eco-friendly repellents, and plenty of water</li><br>
-          		<li class="list-group-item active" id="active">Take pictures, but don't take the flowers, rocks, trees, gravel, etc.</li><br>
-          		<li class="list-group-item">Let someone know your destination, and your time of return</li><br>
-          		<li class="list-group-item active" id="active">Keep in accordance to all trail/park guidelines and hours</li><br>
-          		<li class="list-group-item">Remember that noise pollution is also pollution - Respect your fellow adventurers and Shhhhhh, please</li><br>
-          		<li class="list-group-item active" id="active">Live, Learn, and Love the Great Outdoors!</li><br>
-          	</ul>
-          </p> -->
         </div>
       </div>
     </div>
@@ -255,15 +251,6 @@
           <h6><a class="white-text"><p>&#9851; Recycle This Page.<br>Share with Your Friends!</p></a></h6>
           <!-- PLACE TWITTER, FACEBOOK, and LINKEDIN LINKS HERE -->
         </div>
-        <!-- <div class="col l3 s12">
-          <h5 class="white-text">Contacts</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div> -->
       </div>
     </div>
     <div class="footer-copyright">
@@ -281,5 +268,12 @@
   <script src="js/init.js"></script>
   <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
   <script type="text/javascript" src="assets/javascripts/transit.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
+&libraries=places&callback=initMap"
+        async defer></script>
+  <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
+
+
+
   </body>
 </html>
