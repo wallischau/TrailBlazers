@@ -1,8 +1,12 @@
 
 
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
-const LIMIT = 50;
+const LIMIT = 20;
 var sourceAddr = "";
+var trailResonse;
+var transitAvail = 0;
+var curWeather = 0;
+var transitTime = 0;
 
 $(document).ready(function() {
 
@@ -32,13 +36,20 @@ $(document).ready(function() {
 		$.ajax({url: queryUrl, method: 'GET'}).done(function(response) {
 			var lat = response.results[0].geometry.location.lat;
 			var lon = response.results[0].geometry.location.lng;
-			queryTrailApi(lat, lon, radius, state);
+			queryTrailApi(lat, lon, radius, state, sourceAddr);
 
 		}); console.log(sourceAddr);
 	}); //on click search btn
 }); //ready
+
+
+/*function sleep(miliseconds) {
+    var currentTime = new Date().getTime();
+    while (currentTime + miliseconds >= new Date().getTime()) {
+    }
+}*/
 		
-function queryTrailApi(lat, lon, radius, state) {
+function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 	//setup map
 	var image = { url:"assets/images/icons/trekking-pink-24.ico", 
 		size: new google.maps.Size(24,24), 
@@ -51,6 +62,7 @@ function queryTrailApi(lat, lon, radius, state) {
 		center: {lat: lat, lng: lon}
 	});
 	var limit = LIMIT;
+	var latlonDest;
 	var queryUrl = "https://trailapi-trailapi.p.mashape.com/?limit=" + limit + "&lat=" + lat + "&lon=" + lon + "&radius=" + radius + "&q\[state_cont\]=" + state;
 	// EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD
 	var headers = {"X-Mashape-Key": "EfhnnnowefmshUGxEymg72wQQRblp13wFKzjsnxaA5xcPffFSD"};
@@ -58,15 +70,37 @@ function queryTrailApi(lat, lon, radius, state) {
 	// var headers = {"X-Mashape-Key": "h484kdqRk8mshMubKo8ocVlMlIerp1sUIoSjsn8W8HlEap2L4I"};
 	$.ajax({url: queryUrl, method: 'GET', headers: headers}).done(function(response) {
 		console.log(response);
+		//store response
+		trailResponse = response;
 		$("#trailTable > tbody").html("");
-		for (i=0; i<response.places.length; i++) {
+		for (var i=0; i<response.places.length; i++) {
 			var activities = "";
-			for (j=0; j<response.places[i].activities.length; j++) {
+			for (var j=0; j<response.places[i].activities.length; j++) {
 				activities += response.places[i].activities[j].activity_type_name + " ";
 			}
 
-			$("#trailTable > tbody").append("<tr><td>" + response.places[i].name + "</td><td>" + response.places[i].city + "</td><td>" +
-				response.places[i].state + "</td><td>" + activities + "</td></tr>");
+			$("#trailTable > tbody").append(
+				"<tr id='row-" + i + "'><td>" + response.places[i].name + "</td>" + 
+				"<td>" + response.places[i].city + "</td>" + 
+				"<td>" + response.places[i].state + "</td>" + 
+				"<td>" + activities + "</td>" +
+				"<td class='td-transit'>" + transitAvail + "</td>" +
+				"<td class='td-weather'>" + curWeather + "</td>" +
+				"<td class='td-time'>" + transitTime + "</td>" +
+				"</tr>");
+
+			latlonDest = response.places[i].lat + ',' + response.places[i].lon;
+			//update transit availability
+			if (i<9) {
+				setTimeout(getTransitInfo, 100*i, sourceAddr, latlonDest, i, false);
+			}
+			else if (i<18) {
+				setTimeout(getTransitInfo, 500*i, sourceAddr, latlonDest, i, false);
+			}
+			else {
+				setTimeout(getTransitInfo, 700*i, sourceAddr, latlonDest, i, false);
+			}
+
 			//create map with icon marker for each trail
 			createMarker(response.places[i], map, image);
 	
@@ -92,13 +126,13 @@ function createMarker(place, map, img) {
     	infowindow.setContent(place.name);
     	infowindow.open(map, this);
     	//open new tab to do transit search
-   	 	getTransitInfo(sourceAddr, latlonDest);
+   	 	getTransitInfo(sourceAddr, latlonDest, 0, true);
   	});
 }
 
 // show transit info map and direction
-function getTransitInfo(sourceAddr, destAddr) {
-	console.log(sourceAddr);
+function getTransitInfo(sourceAddr, destAddr, index, showMap) {
+	console.log(sourceAddr + " " + index);
 	console.log(destAddr);
-	calcRoute(sourceAddr, destAddr);
+	calcRoute(sourceAddr, destAddr, index, showMap);
 }
