@@ -90,7 +90,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 			}
 
 			$("#trailTable > tbody").append(
-				"<tr id='row-" + i + "'><td>" + response.places[i].name + "</td>" + 
+				"<tr id='row-" + i + "' class='tr-trail'><td>" + response.places[i].name + "</td>" + 
 				"<td>" + response.places[i].city + "</td>" + 
 				"<td>" + response.places[i].state + "</td>" + 
 				"<td>" + activities + "</td>" +
@@ -152,3 +152,9 @@ function getTransitInfo(sourceAddr, destAddr, index, showMap) {
 	console.log(destAddr);
 	calcRoute(sourceAddr, destAddr, index, showMap);
 }
+
+//listen to entire row of trail
+$("body").on("click", ".tr-trail", function() {
+	console.log($(this));
+	//call form 3 functions
+});
