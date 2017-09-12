@@ -1,16 +1,12 @@
-function initMap() {
+      function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-<<<<<<< Updated upstream
           center: {lat: 39, lng: -104},
-=======
-          center: {lat: 39.73, lng: -104.99},
->>>>>>> Stashed changes
           zoom: 13
         });
         var card = document.getElementById('input-trail-address');
         var input = document.getElementById('pac-input');
-        // var types = document.getElementById('type-selector');
-        // var strictBounds = document.getElementById('strict-bounds-selector');
+        var types = document.getElementById('type-selector');
+        var strictBounds = document.getElementById('strict-bounds-selector');
 
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -64,4 +60,5 @@ function initMap() {
           infowindowContent.children['place-address'].textContent = address;
           infowindow.open(map, marker);
         });
+
       }

@@ -1,7 +1,10 @@
 
 //Global Variables
-const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
-const LIMIT = 40;
+const gglGeoKey = "AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4";
+// AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
+// AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU- Wallis Key
+
+const LIMIT = 10;
 var sourceAddr = "";
 var trailResponse;
 var transitAvail = 0;
