@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="assets/css/style.css" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 <!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script> -->
 </head>
@@ -22,13 +23,12 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">Team Tiger</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home Page</a></li>
-        <li><a href="trailsearch.html">Trail Results Page</a></li>
+        <li><a href="index.html"><i class="material-icons">home</i></a></li>
+        <li><a href="resources.html">Resources</a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="https://www.weather.com">Weather</a></li>
-        <li><a href="https://maps.google.com">Maps</a></li>
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -54,22 +54,23 @@
   <div class="container">
     <div class="section">
       <div class="row">
+      		<!-- Input -->
+      <div class="col s12 m12">
+       <form id="trailForm"> 
+          <label for="input-trail-address">Starting Address</label>
+           <input id="pac-input" type="text" id="input-trail-address" placeholder="Full Address You Wish to Transit From (Address, City, State)">
+            <div id="map"></div>
+          <label for="input-trail-city">Trail Destination: City</label> 
+          <input type="text" id="input-trail-city"> 
           <!-- Input -->
       <div class="col s10 m10">
        <form id="trailForm">
           <label for="input-trail-address">Starting Address</label>
            <input id="pac-input" type="text" id="input-trail-address" placeholder="Full Address You Wish to Transit From (Address, City, State)">
             <div id="map"></div>
-<!--           <label for="input-trail-address">Starting Address:</label>
           <input type="text" id="input-trail-address"> -->
           <label for="input-trail-city">Trail Destination: City</label>
           <input type="text" id="input-trail-city">
-<!-- Drop down for city -->
-<!--      <label for="input-trail-city">City</label>
-            <select id="input-trail-city" class="browser-default">
-            <option value="" disabled selected>Select City</option>
-            <select name="city" class="cities" id="cityId">
-            </select> -->
           <label for="input-trail-state">State</label>
             <select id="input-trail-state" class="browser-default">
               <option value="" disabled selected>Select State</option>
@@ -125,7 +126,25 @@
                 <option value="Wisconsin" stateid="WI" id="input-trail-state">Wisconsin</option>
                 <option value="Wyoming" stateid="WY" id="input-trail-state">Wyoming</option>
               </select>
-
+					<label for="input-trail-radius">Radius</label>
+					<select id="input-trail-radius" class="browser-default">
+						<option value="" disabled selected>Choose your option</option>
+						<option value=“5”>5 miles</option>
+						<option value=“10”>10 miles</option>
+						<option value=“15”>15 miles</option>
+						<option value=“20”>20 miles</option>
+						<option value=“25”>25 miles</option>
+						<option value=“30”>30 miles</option>
+						<option value=“40”>40 miles</option>
+						<option value=“50”>50 miles</option>
+						<option value=“75”>75 miles</option>
+						<option value=“100”>100 miles</option>
+					</select>
+					<br>
+          <button type="button" id="submit" class="btn btn-success btn-sm">Search</button>
+				    </form>
+        	</div>
+        </div> 
           <label for="input-trail-radius">Radius</label>
           <select id="input-trail-radius" class="browser-default">
             <option value="" disabled selected>Choose your option</option>
@@ -141,7 +160,6 @@
             <option value=“100”>100 miles</option>
           </select>
           <br>
-          <!-- <input type="submit" id="submit" class='search-btn' value="search"> -->
           <button type="button" id="submit" class="btn btn-success btn-sm">Search</button>
             </form>
           </div>
@@ -152,10 +170,61 @@
 <!--         <img id="weatherIcon" /> -->
         <p><span id="temperature"></span></p>
       </div>
-
-<!-- End Weather -->
-        </div> <!-- row -->
+<!-- Trail Info Table -->
+     <div class="hide1"> 
         <div class="row form2">
+        	<div class="col s12 m10">
+        		<table id="trailTable" class="table striped center bordered responsive-table" class="highlight">
+       				<thead>
+        				<tr>
+			            	<th>Trail Name</th>
+			            	<th>City</th>
+			            	<th>State</th>
+			            	<th>Activities</th>
+                    <th>Transit Availability</th>
+                    <th>Current Weather</th>
+                    <th>Transit Time</th>
+		          		</tr>
+        			 </thead>
+        			 <tbody>
+        			</tbody>
+				    </table>
+        	</div>
+      	</div> 
+<!-- End Trail Info -->
+<!-- Map Display -->
+        <div class="row form2">
+          <div class="col s12 m12">
+            <div id="form2-map" style="height:600px"> </div>
+          </div> 
+        </div> 
+<!-- End Map row -->
+<!-- Trail Details Display -->
+        <div class="row form3" id="form3-trail-info"></div>
+<!--End Trail Details Display-->
+        <div class="row form3" id="form3-weather"></div>
+  <!--  No IDEA WHAT THIS IS-->
+        <div class="row form3"> </div> 
+  </div> <!--Div for Hidden Area 1-->
+<!-- NEW ROW -->
+<!-- Transit Instructions/Map -->
+    <div class="row" id="hide2">
+<!-- Transit Instructions Display -->
+        <div class="col s4 m4" >
+          <h6 id="transitInstr"><bold>Transit Instructions</bold></h6>
+          <div id="form3-panel"></div>
+        </div>
+<!-- Transit Directions Map Display-->
+        <div class="col s8 m8" >
+          <h6><bold>Transit Directions Map</bold></h6>
+          <div id="form3-map" style="height:500px"> </div>
+          <br>
+        </div> 
+<!-- Closing Div for Transit Instr/Dir Area -->
+    </div>
+  </div> 
+<!--  -->
+<!-- Parallax Container 2 -->
       <!-- Trail list -->
           <div class="col s12 m12">
             <table id="trailTable" class="table striped center bordered responsive-table" class="highlight">
@@ -211,9 +280,6 @@
                   <div id="form3-map" style="height:400px"> </div>
                 </div>
       </div>
-
-
-
   <!-- Parallax Container 2 -->
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
@@ -238,7 +304,6 @@
     </div>
   </div>
 <!-- Parallalex Container 3 -->
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -280,10 +345,16 @@
     </div>
   </footer>
   <!--  Scripts-->
-
-
-
-
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
+  <script type="text/javascript" src="assets/javascripts/transit.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
+&libraries=places&callback=initMap"
+        async defer></script>
+  <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
+  <script type="text/javascript" src="assets/javascripts/form2_apiweather.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
@@ -295,6 +366,5 @@
           async defer></script>
     <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
   <!--  <script type="text/javascript" src="assets/javascripts/form2_apiweather.js"></script> -->
-
   </body>
 </html>
