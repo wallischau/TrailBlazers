@@ -5,7 +5,6 @@ console.log("get 5 days forecast for lat and long - denver");
 //callweather5dayforecast(35,139);
 callweather5dayforecast(39.73,-104.98);
 
-
 function callweatherbylatlong(v_lat,v_long)
 {
                   var queryurl = "https:/api.openweathermap.org/data/2.5/weather?APPID=";
@@ -20,11 +19,19 @@ function callweatherbylatlong(v_lat,v_long)
                     method:"GET"
                   }).done(function(response)
                   {
+<<<<<<< Updated upstream
                         console.log("The Current Weather : ", response);
 
+=======
+                        console.log("The Current Weather : "+response);
+                        var icon = "<img src=http://openweathermap.org/img/w/" + response.weather[0].icon + ".png>";
+>>>>>>> Stashed changes
                    });
 }
+function callparkapi()
+{
 
+}
 function callweather5dayforecast ( v_lat, v_long)
 {
 
@@ -79,7 +86,7 @@ function callweather5dayforecast ( v_lat, v_long)
                                   var t1_temp = response.list[i+j].main.temp ;
                                   var t2_desc = response.list[i+j].weather[0].description ;
                                   var t3_ico = response.list[i+j].weather[0].icon ;
-                                  var t4_src =  "http://openweathermap.org/img/w/"+t3_ico ;
+                                  var t4_src =  "http://openweathermap.org/img/w/"+t3_ico +".png";
                                   var t5_dxt = response.list[i+j].dt_txt;
                                   var altimg = response.list[i+j].weather[0].main ;
                                   console.log('The response date : '+t5_dxt);
@@ -89,8 +96,9 @@ function callweather5dayforecast ( v_lat, v_long)
                                 //  console.log( "t3_ico : "+t3_ico);
                                   //console.log( "t4_src : "+t4_src);
                                   var weatherrow = (`<td><p>${t1_temp}</p>
-                                    <p>${t2_desc}</p>
-                                    `); //  <img src = ${t4_src} alt = ${altimg}></img>
+                                      <img src = ${t4_src} alt = ${altimg}></img>
+
+                                    <p>${t2_desc}</p>`);
                                   rowid.append(weatherrow);
                           }
 
