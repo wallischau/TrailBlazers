@@ -9,7 +9,6 @@
   <!-- Awesome Fonts -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -55,14 +54,14 @@
     <div class="section">
       <div class="row">
       		<!-- Input -->
-      <div class="col s8 m8">
+      <div class="col s10 m10">
        <form id="trailForm"> 
-          <label for="input-trail-address">Starting Address:</label>
-           <input id="pac-input" type="text" id="input-trail-address" placeholder="Enter Address You Wish to Transit From">
+          <label for="input-trail-address">Starting Address</label>
+           <input id="pac-input" type="text" id="input-trail-address" placeholder="Full Address You Wish to Transit From (Address, City, State)">
             <div id="map"></div>
 <!--           <label for="input-trail-address">Starting Address:</label> 
           <input type="text" id="input-trail-address"> -->
-          <label for="input-trail-city">City:</label> 
+          <label for="input-trail-city">Trail Destination: City</label> 
           <input type="text" id="input-trail-city"> 
 <!-- Drop down for city -->
 <!--      <label for="input-trail-city">City</label>
@@ -146,7 +145,7 @@
 				    </form>
         	</div>
 <!-- Weather -->
-      <div class="col s4 m4" id="currentWeather">
+      <div class="col s2 m2" id="currentWeather">
         <h6><span id="city"></span></h6>
         <p><span id="descriptionWeather"></span></p>
 <!--         <img id="weatherIcon" /> -->
@@ -165,6 +164,9 @@
 			            	<th>City</th>
 			            	<th>State</th>
 			            	<th>Activities</th>
+                    <th>Transit Availability</th>
+                    <th>Current Weather</th>
+                    <th>Transit Time</th>
 		          		</tr>
         			</thead>
         			<tbody>
@@ -172,13 +174,11 @@
 				    </table>
         	</div>
       	</div> <!-- row -->
-
         <div class="row form2">
-          <div class="col s12 m8">
-            <div id="form2-map" style="height:300px"> </div>
+          <div class="col s12 m12">
+            <div id="form2-map" style="height:600px"> </div>
           </div> 
         </div> <!-- row -->
-
         <div class="row form3" id="form3-trail-info">
           <!--placeholder for trail detail-->
         </div>
@@ -187,12 +187,12 @@
         </div>
         <div class="row form3">
         <!--  left panel -->
-          <div class="col s12 m4">
+          <div class="col s4 m4">
             <div id="form3-panel"></div>
           </div>
           <!-- map on the right-->
-          <div class="col s12 m8">
-            <div id="form3-map" style="height:300px"> </div>
+          <div class="col s8 m8">
+            <div id="form3-map" style="height:400px"> </div>
           </div> 
         </div>
     </div>
@@ -230,7 +230,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="assets/images/background3.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img src="assets/images/mtnlake.jpg" alt="Unsplashed background img 3"></div>
   </div>
 <!-- Footer -->
   <footer class="page-footer teal">
@@ -272,6 +272,7 @@
 &libraries=places&callback=initMap"
         async defer></script>
   <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
+  <script type="text/javascript" src="assets/javascripts/form2_apiweather.js"></script>
 
 
 
