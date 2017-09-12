@@ -13,7 +13,7 @@ function callweatherbylatlong(v_lat,v_long, index)
     method:"GET"
   }).done(function(response)
   {
-    var icon = "<img src=http://openweathermap.org/img/w/" + response.weather[0].icon + ".png>";
+    var icon = "<img src=https://openweathermap.org/img/w/" + response.weather[0].icon + ".png>";
     var description = "<p style='margin-bottom:0px;'>" + response.weather[0].description + "</p>";
     console.log(icon);
     $('#row-' + index + " td.td-weather").html(icon + description);
