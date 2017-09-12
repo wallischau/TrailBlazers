@@ -1,7 +1,7 @@
 //diplay current weather icon on the form2
 function callweatherbylatlong(v_lat,v_long, index)
 {
-  var queryurl = "https:/api.openweathermap.org/data/2.5/weather?APPID=";
+  var queryurl = "https://api.openweathermap.org/data/2.5/weather?APPID=";
   var apikey = "3d1a8b5789767e359e88b92160cb58fe";
   var param_1 = "&lat="+v_lat+"&lon="+v_long;
   var param_2 = "&units=imperial";
