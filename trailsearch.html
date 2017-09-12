@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="assets/css/style.css" rel="stylesheet">
 <!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU&&libraries=places" async defer></script> -->
 </head>
 <body>
@@ -21,13 +22,12 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">Team Tiger</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home Page</a></li>
-        <li><a href="trailsearch.html">Trail Results Page</a></li>
+        <li><a href="index.html"><i class="material-icons">home</i></a></li>
+        <li><a href="resources.html">Resources</a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="https://www.weather.com">Weather</a></li>
-        <li><a href="https://maps.google.com">Maps</a></li>
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -54,13 +54,11 @@
     <div class="section">
       <div class="row">
       		<!-- Input -->
-      <div class="col s10 m10">
+      <div class="col s12 m12">
        <form id="trailForm"> 
           <label for="input-trail-address">Starting Address</label>
            <input id="pac-input" type="text" id="input-trail-address" placeholder="Full Address You Wish to Transit From (Address, City, State)">
             <div id="map"></div>
-<!--           <label for="input-trail-address">Starting Address:</label> 
-          <input type="text" id="input-trail-address"> -->
           <label for="input-trail-city">Trail Destination: City</label> 
           <input type="text" id="input-trail-city"> 
 <!-- Drop down for city -->
@@ -140,23 +138,15 @@
 						<option value=“100”>100 miles</option>
 					</select>
 					<br>
-					<!-- <input type="submit" id="submit" class='search-btn' value="search"> -->
           <button type="button" id="submit" class="btn btn-success btn-sm">Search</button>
 				    </form>
         	</div>
-<!-- Weather -->
-      <div class="col s2 m2" id="currentWeather">
-        <h6><span id="city"></span></h6>
-        <p><span id="descriptionWeather"></span></p>
-<!--         <img id="weatherIcon" /> -->
-        <p><span id="temperature"></span></p>
+        </div> 
       </div>
-
-<!-- End Weather -->
-        </div> <!-- row -->
+<!-- Trail Info Table -->
+     <div class="hide1"> 
         <div class="row form2">
- 			<!-- Trail list -->
-        	<div class="col s12 m12">
+        	<div class="col s12 m10">
         		<table id="trailTable" class="table striped center bordered responsive-table" class="highlight">
        				<thead>
         				<tr>
@@ -173,30 +163,40 @@
         			</tbody>
 				    </table>
         	</div>
-      	</div> <!-- row -->
+      	</div> 
+<!-- End Trail Info -->
+<!-- Map Display -->
         <div class="row form2">
           <div class="col s12 m12">
             <div id="form2-map" style="height:600px"> </div>
           </div> 
-        </div> <!-- row -->
-        <div class="row form3" id="form3-trail-info">
-          <!--placeholder for trail detail-->
+        </div> 
+<!-- End Map row -->
+<!-- Trail Details Display -->
+        <div class="row form3" id="form3-trail-info"></div>
+<!--End Trail Details Display-->
+        <div class="row form3" id="form3-weather"></div>
+  <!--  No IDEA WHAT THIS IS-->
+        <div class="row form3"> </div> 
+  </div> <!--Div for Hidden Area 1-->
+<!-- NEW ROW -->
+<!-- Transit Instructions/Map -->
+    <div class="row" id="hide2">
+<!-- Transit Instructions Display -->
+        <div class="col s4 m4" >
+          <h6 id="transitInstr"><bold>Transit Instructions</bold></h6>
+          <div id="form3-panel"></div>
         </div>
-        <div class="row form3" id="form3-weather">
-          <!--placeholder for weather  -->
-        </div>
-        <div class="row form3">
-        <!--  left panel -->
-          <div class="col s4 m4">
-            <div id="form3-panel"></div>
-          </div>
-          <!-- map on the right-->
-          <div class="col s8 m8">
-            <div id="form3-map" style="height:400px"> </div>
-          </div> 
-        </div>
+<!-- Transit Directions Map Display-->
+        <div class="col s8 m8" >
+          <h6><bold>Transit Directions Map</bold></h6>
+          <div id="form3-map" style="height:500px"> </div>
+          <br>
+        </div> 
+<!-- Closing Div for Transit Instr/Dir Area -->
     </div>
-  </div>
+  </div> 
+<!--  -->
 <!-- Parallax Container 2 -->
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
@@ -273,8 +273,5 @@
         async defer></script>
   <script type="text/javascript" src="assets/javascripts/autoComplete.js"></script>
   <script type="text/javascript" src="assets/javascripts/form2_apiweather.js"></script>
-
-
-
   </body>
 </html>
