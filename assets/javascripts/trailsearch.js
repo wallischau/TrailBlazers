@@ -106,7 +106,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 				"</tr>"); */
        var idval = "row-"+i ;
        var trow = $("<tr>");
-       trow.append("<td><a href='#form3-trail-info'>" + response.places[i].name + "</a></td>" +
+       trow.append("<td class='td-name'><a href='#form3-trail-info'>" + response.places[i].name + "</a></td>" +
        "<td>" + response.places[i].city + "</td>" +
        "<td>" + response.places[i].state + "</td>" +
        "<td>" + activities + "</td>" +
@@ -143,7 +143,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 
 
   		//create map with icon marker for each trail
-			createMarker(response.places[i], map, image);
+			createMarker(response.places[i], map, image, i);
 
     	} //for
 	}); //ajax
@@ -157,7 +157,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 //create map with markers for each trail
 //hover marker will show trail's name
 //click on marker show transit info
-function createMarker(place, map, img) {
+function createMarker(place, map, img, index) {
 	var latlonDest = place.lat + ',' + place.lon;
   	var infowindow = new google.maps.InfoWindow();
   	var marker = new google.maps.Marker({
@@ -176,6 +176,22 @@ function createMarker(place, map, img) {
    	 	getTransitInfo(sourceAddr, latlonDest, 0, true);
    	 	// Show the Transit Map on click
   	});
+
+  	//hover event on marker
+  	google.maps.event.addListener(marker, 'mouseover', function() {
+  		console.log($(this)[0].myId);
+		$('#' + $(this)[0].myId + " td.td-name").css("color","green"); 
+		$('#' + $(this)[0].myId ).css("border","2px solid green"); 
+  	});
+
+  	//mouseout event on marker
+  	google.maps.event.addListener(marker, 'mouseout', function() {
+  		console.log($(this)[0].myId);
+		$('#' + $(this)[0].myId + " td.td-name").css("color","black"); 
+		$('#' + $(this)[0].myId).css("border","0"); 
+  	});
+  	//add new property to match table row
+  	marker.myId = "row-" + index;
 }
 
 // show transit info map and direction
