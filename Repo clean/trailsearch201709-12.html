@@ -159,7 +159,7 @@
                     <th>Transit Time</th>
 		          		</tr>
         			 </thead>
-        			 <tbody id="tablecontent">
+        			 <tbody>
         			</tbody>
 				    </table>
         	</div>
@@ -168,43 +168,29 @@
 <!-- Map Display -->
         <div class="row form2">
           <div class="col s12 m12">
-            <div id="form2-map" style="height:500px"> </div>
+            <div id="form2-map" style="height:600px"> </div>
           </div> 
         </div> 
 <!-- End Map row -->
 <!-- Trail Details Display -->
-        <div class="row form3" id="form3-trail-info">
-          <h1 id ="parkinfohead"></h1>
-          <table>
-            <thead>
-            </thead>
-            <tbody id = "form3-trail-content">
-            </tbody>
-          </table>
-        </div>
+        <div class="row form3" id="form3-trail-info"></div>
 <!--End Trail Details Display-->
-        <div class="row form3" id="form3-weather">
-          <h4 id = "weatherhead"></h4>
-          <table>
-            <thead id = "columnhead">
-            </thead>
-            <tbody id = "weathertablecontent">
-            <tbody>
-          </table>
-        </div>
+        <div class="row form3" id="form3-weather"></div>
+  <!--  No IDEA WHAT THIS IS-->
+        <div class="row form3"> </div> 
   </div> <!--Div for Hidden Area 1-->
 <!-- NEW ROW -->
 <!-- Transit Instructions/Map -->
     <div class="row" id="hide2">
 <!-- Transit Instructions Display -->
         <div class="col s4 m4" >
-          <h6 id="transitInstr"><bold>Transit Instructions</bold></h6>
+          <h6 id="transitInstr">Transit Instructions</h6>
           <div id="form3-panel"></div>
         </div>
 <!-- Transit Directions Map Display-->
         <div class="col s8 m8" >
-          <h6><bold>Transit Directions Map</bold></h6>
-          <div id="form3-map" style="height:400px"> </div>
+          <h6>Transit Directions Map</h6>
+          <div id="form3-map" style="height:500px"> </div>
           <br>
         </div> 
 <!-- Closing Div for Transit Instr/Dir Area -->
@@ -276,14 +262,12 @@
       </div>
     </div>
   </footer>
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script type="text/javascript" src="assets/javascripts/trailsearch.js"></script>
-  <script type="text/javascript" src="assets/javascripts/transit.js"></script>
-  <script type="text/javascript" src="assets/javascripts/form3trailblazers.js"></script>
+  <script type="text/javascript" src="assets/javascripts/trailsearchHide.js"></script>
+  <script type="text/javascript" src="assets/javascripts/transitFormatTest.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
 &libraries=places&callback=initMap"
         async defer></script>

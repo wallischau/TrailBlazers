@@ -1,0 +1,25 @@
+wallischau 
+[10:59 AM] 
+In the parkseearch.js:
+
+
+[10:59] 
+$('#park').on('click', '.search-btn', function(event) {
+    event.preventDefault(); 
+    userInputAddr = $('#input-text-addr').val().trim();
+    userInputRadius = parseInt($('#input-text-radius').val());
+    userInputAddrNoSpace = userInputAddr.replace(/ /g, '+');
+    console.log(userInputAddr);
+    console.log(userInputRadius);
+
+    queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userInputAddrNoSpace + "&key=" + KEY;
+    console.log(queryURL);
+    $.ajax( {url: queryURL,
+            method: 'GET'
+            }).done(function(response) {
+                // console.log(response);
+                lng = response.results[0].geometry.location.lng;
+                lat = response.results[0].geometry.location.lat;
+                // console.log(lat + " " + lng);
+                initMap();    
+            });
