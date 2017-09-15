@@ -174,8 +174,8 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
       		var inputele_4 = $("<input>");
       		inputele_4.attr('type','submit');
       		inputele_4.attr('name','weather_button');
-      		inputele_4.val("Weather");
-      		inputele_4.addClass("weather-btn");
+      		inputele_4.val("Trail Weather");
+      		inputele_4.addClass("weather-btn btn btn-success btn-sm");
       		formele.append(inputele_4);
       		var buttonTd = $('<td>');
       		buttonTd.attr('colspan', 2);
@@ -185,7 +185,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
       		/* end of sangeetha's code */
       		//add button transit
        		var TransitBtn = $("<button>");
-       		TransitBtn.addClass("transit-btn");
+       		TransitBtn.addClass("transit-btn btn btn-success btn-sm");
        		TransitBtn.text("Transit Info");
        		TransitBtn.attr('id',`transit-btn-${i}`);
        		TransitBtn.attr('trail-name', response.places[i].name);
