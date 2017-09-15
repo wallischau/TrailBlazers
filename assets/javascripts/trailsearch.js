@@ -16,9 +16,8 @@ var transitTime = 0;
 //Variables needed for form-3
 var gl_radius = 1;
 var gl_sourceaddr = "";
-//Sets focus on Starting Address Field after clicking on th
 var gl_state = "";
-e Start Search Button
+//Sets focus on Starting Address Field after clicking on the Start Search Button
 $( "#startSearch" ).click(function() {
   $( "#pac-input").focus();
 });
