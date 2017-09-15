@@ -23,6 +23,7 @@ function callweatherbylatlong(v_lat,v_long, index)
    });
 }
 
+/*
 function callweather5dayforecast ( v_lat, v_long)
 {
 
@@ -98,4 +99,4 @@ function callweather5dayforecast ( v_lat, v_long)
            } // end of i
 
   }); //end of API call
-}
+} */

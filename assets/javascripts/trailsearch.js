@@ -88,39 +88,95 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
     console.log("The response of PARK API", response);
 		$("#trailTable > tbody").html("");
 		for (var i=0; i<response.places.length; i++) {
+			//skip the park name "fake place". This is placeholder only
+			if (response.places[i].name === "Fake Place") {
+				continue;
+			}
 			var activities = "";
 			for (var j=0; j<response.places[i].activities.length; j++) {
 				activities += response.places[i].activities[j].activity_type_name + " ";
 			}
 
-    /*
-			$("#trailTable > tbody").append(
-				"<tr value = "+response.places[i].lat+":"+response.places[i].lon+
-        " id='row-" + i + "' class='tr-trail'><td>" + response.places[i].name + "</td>" +
-				"<td>" + response.places[i].city + "</td>" +
-				"<td>" + response.places[i].state + "</td>" +
-				"<td>" + activities + "</td>" +
-				"<td class='td-transit'>" + transitAvail + "</td>" +
-				"<td class='td-weather'>" + curWeather + "</td>" +
-				"<td class='td-time'>" + transitTime + "</td>" +
-				"</tr>"); */
        var idval = "row-"+i ;
        var trow = $("<tr>");
-       trow.append("<td class='td-name'><a href='#form3-trail-info'>" + response.places[i].name + "</a></td>" +
+       trow.append("<td class='td-name'>" + response.places[i].name + "</td>" +
        "<td>" + response.places[i].city + "</td>" +
        "<td>" + response.places[i].state + "</td>" +
        "<td>" + activities + "</td>" +
        "<td class='td-transit'>" + transitAvail + "</td>" +
        "<td class='td-weather'>" + curWeather + "</td>" +
-       "<td class='td-time'>" + transitTime + "</td>");
+       "<td class='td-time' style='font-size:12px;'>" + transitTime + "</td>");
        trow.attr("id", idval);
        trow.addClass("tr-trail");
        trow.attr("latval",response.places[i].lat);
        trow.attr("longval",response.places[i].lon);
+       //for toggling
+       trow.addClass("toggler");
+       trow.attr("data-row", i);
 
        //trow.attr("link",response.places[i].activities[])
 
        $("#tablecontent").append(trow);
+
+       //add trail info row
+       var trow2 = $("<tr>");
+       trow2.addClass("row" + i);
+       trow2.css("display", "none");
+       //collect trail info
+       var v_placename = response.places[0].name ;
+       var v_description = response.places[i].description ;
+       //var v_acttypname = response.places[i].activities[0].activity_type_name;
+       var v_actname = response.places[i].activities[0].name;
+       var v_actdescr = response.places[i].activities[0].description;
+       if ( v_actname === null )
+       {
+         v_actname = v_placename;
+       }
+       if ( v_actdescr === null )
+       {
+         v_actdescr = v_description;
+       }
+       //var detail_link = response.places[i].activities[0].url;
+       //var img_link = response.places[i].activities[0].thumbnail;
+       var trailInfo = `<td colspan='7'>${v_actdescr}</td>`;
+       //add 2nd row for trail info
+       trow2.append(trailInfo);
+       $("#tablecontent").append(trow2);
+       //add button row
+       var trow3 = $("<tr>");
+       trow3.addClass("row" + i);
+       trow3.addClass("last-row");
+       trow3.css('border-bottom', '2px solid');
+       trow3.css("display", "none");
+       //add button weather
+       var weatherBtn = $("<button>");
+       weatherBtn.addClass("weather-btn");
+       weatherBtn.text("Weather");
+       weatherBtn.attr('id',`weather-btn-${i}`);
+       weatherBtn.attr('trail-name', response.places[i].name);
+       weatherBtn.attr('lat', response.places[i].lat);
+       weatherBtn.attr('lon', response.places[i].lon);
+       console.log(weatherBtn);
+       var buttonTd = $('<td>');
+       buttonTd.attr('colspan', 2);
+       buttonTd.append(weatherBtn);
+       trow3.append(buttonTd);
+       //add button transit
+       var TransitBtn = $("<button>");
+       TransitBtn.addClass("transit-btn");
+       TransitBtn.text("Transit Info");
+       TransitBtn.attr('id',`transit-btn-${i}`);
+       TransitBtn.attr('trail-name', response.places[i].name);
+	   var latlonDest = response.places[i].lat + ',' + response.places[i].lon;
+       TransitBtn.attr('latlon-dest', latlonDest);
+       TransitBtn.attr('source-addr', sourceAddr);
+       console.log(TransitBtn);
+       var buttonTd2 = $('<td>');
+       buttonTd2.attr('colspan', 5);
+       buttonTd2.append(TransitBtn);
+       trow3.append(buttonTd2);
+       $("#tablecontent").append(trow3);
+
        console.log("the trow",trow);
 			latlonDest = response.places[i].lat + ',' + response.places[i].lon;
 			//update transit availability
@@ -149,10 +205,50 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 	}); //ajax
 } //queryTrailAPI
 
-	//Figuring out hidding/showing stuff on Submit button click
-    $("#submit").click(function(){
-        $(".hide1").show();
-    });
+var trExpandTracker = -1;
+//toggle trigger
+$("#tablecontent").on("click",".toggler", function(event) {
+	event.preventDefault();
+	console.log($(this));
+	console.log("click " + trExpandTracker);
+	//get row number
+	var dataRow = parseInt($(this).attr('data-row'));
+	if (dataRow === trExpandTracker) {
+		//same row got clicked as last time
+		trExpandTracker = -1;
+	console.log("same " + trExpandTracker);
+	}
+	else {
+		//different row got clicked, toggle last expanded rows
+		$('.row'+ trExpandTracker).toggle();
+		//toggle current row
+		trExpandTracker = dataRow;
+	console.log("other " + trExpandTracker);
+	}
+	$('.row'+$(this).attr('data-row')).toggle();
+
+});
+
+//weather button onclick
+$("#tablecontent").on("click",".weather-btn", function(event) {
+	event.preventDefault();
+	console.log($(this));
+//	callweather5dayforecast($(this).attr('lat'),$(this).attr('lon'),$(this).attr('trail-name'));
+	callweather5dayforecast($(this).attr('lat'),$(this).attr('lon'));
+});
+
+//transit button onclick
+$("#tablecontent").on("click",".transit-btn", function(event) {
+	event.preventDefault();
+    $("#hide2").show();
+	console.log($(this));
+   	getTransitInfo($(this).attr('source-Addr'), $(this).attr('latlon-dest'), 0, true);
+});
+
+//Figuring out hidding/showing stuff on Submit button click
+$("#submit").click(function(){
+    $(".hide1").show();
+});
  
 //create map with markers for each trail
 //hover marker will show trail's name
@@ -201,24 +297,5 @@ function getTransitInfo(sourceAddr, destAddr, index, showMap) {
 	calcRoute(sourceAddr, destAddr, index, showMap);
 }
 
-//listen to entire row of trail
-$("#tablecontent").on("click","tr", function() {
-	console.log('this',this);
-  console.log('this',$(this));
-  var v_obj = $(this);
-  var v_lat = v_obj.attr("latval");
-  var v_long = v_obj.attr("longval");
-  //console.log('the latlon',v_latlon)
-
-  console.log('lat val',v_lat);
-  console.log('long val',v_long);
-  //$("#form3-weather").html("");
-  //$("#form3-trail-info").html("");
-  //callform3display();
-  callform3disptrail(v_lat,v_long,gl_radius,gl_state);
-  callweather5dayforecast(v_lat,v_long);
-
-	//call form 3 functions
-});
 
 
