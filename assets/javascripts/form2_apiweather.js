@@ -1,3 +1,8 @@
+/* form2_apiweather.js                                                         */
+/* Description: trail search engines                                      */
+/* Date: 9/1/2017                                                         */
+/* Author: Wallis Chau, Sangeetha Kaliaperumal, Ed Quintana, Kelly Wenzel */
+
 //diplay current weather icon on the form2
 function callweatherbylatlong(v_lat,v_long, index)
 {

@@ -1,17 +1,8 @@
-//$(document).ready(function() {
-/*console.log($('#map')[0]);
-console.log(document.getElementById('map'));
+/* trailsearch.js                                                         */
+/* Description: trail search engines                                      */
+/* Date: 9/1/2017                                                         */
+/* Author: Wallis Chau, Sangeetha Kaliaperumal, Ed Quintana, Kelly Wenzel */
 
-var userInputFrom;
-var userInputTo;
-$('#submit').on("click", function(event) {
-	event.preventDefault();
-	userInputFrom = $('#input-text').val().trim();
-	userInputTo = $('#input-text-to').val().trim();
-	console.log(userInputFrom);
-	calcRoute(userInputFrom, userInputTo);
-});
-*/
 
 //calculate route
 //source could be address or coord pair e.g. (lat,lon)
@@ -78,8 +69,3 @@ function writeDirectionsSteps(steps) {
 }	
 
 
-
-
-
-
-//});
