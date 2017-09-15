@@ -42,3 +42,10 @@ td, th {
   text-align: center; 
 }
 /*Media Queries for the Table*/
+
+/*weather icon */
+.td-weather img {
+	width: 30px;
+	height: 30px;
+}
+
