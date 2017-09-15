@@ -32,7 +32,7 @@ $(document).ready(function() {
 function callweather( v_lat, v_long,v_name)
 {
 
-                    var queryurl = "https:/api.openweathermap.org/data/2.5/forecast?APPID=";
+                    var queryurl = "https://api.openweathermap.org/data/2.5/forecast?APPID=";
                     var apikey = "3d1a8b5789767e359e88b92160cb58fe";
                     var param_1 = "&lat="+v_lat+"&lon="+v_long;
                     var param_2 = "&units=imperial";
