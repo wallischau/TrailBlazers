@@ -68,11 +68,10 @@ function calcRoute(source, dest, index, boolShowMap) {
 function writeDirectionsSteps(steps) {
   var directions = $('#form3-panel');
   directions.html('');
-  for (var i = 0; i < steps.length; i++) {
-    
-    directions.append('<br/><br/>' + steps[i].instructions + '<br/>' + steps[i].distance.text);
+  for (var i = 0; i < steps.length; i++) { 
+    directions.append('<li>' + steps[i].instructions + " " steps[i].distance.text);
     if (typeof steps[i].transit !== "undefined") {
-      directions.append('<br/>' + steps[i].transit.arrival_stop.name);
+      directions.append('<li>' + steps[i].transit.arrival_stop.name);
     }
   }
 }	
