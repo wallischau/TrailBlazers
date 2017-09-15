@@ -56,11 +56,11 @@ footer.page-footer {
   margin: 0;
 }
 
-mark {
-    background-color: teal;
-    color: white;
-    font-size: 20px;
-    
+.resourcesLink {
+  padding: 5px 5px 5px 5px;
+  background-color: teal;
+  color: white;
+
 }
 
 #share-buttons img {
