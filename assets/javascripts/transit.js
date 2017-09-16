@@ -7,6 +7,8 @@
 //calculate route
 //source could be address or coord pair e.g. (lat,lon)
 function calcRoute(source, dest, index, boolShowMap) {
+  $('#form3-panel').empty();
+  $('#form3-map').empty();
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
   var map = new google.maps.Map(document.getElementById('form3-map'), {
