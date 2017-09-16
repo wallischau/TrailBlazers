@@ -4,10 +4,10 @@
 /* Author: Wallis Chau, Sangeetha Kaliaperumal, Ed Quintana, Kelly Wenzel */
 
 //Global Variables
-const gglGeoKey = "AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4";
+const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 // AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
 // AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU- Wallis Key
-const LIMIT = 10;
+const LIMIT = 40;
 var sourceAddr = "";
 var trailResponse;
 var transitAvail = 0;
