@@ -28,6 +28,7 @@ p {
   .parallax-container .section {
     width: 100%;
   }
+#form-3
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
@@ -37,12 +38,52 @@ p {
   #index-banner .section {
     top: 10%;
   }
+
+   .blocktext {
+    display: block;
+    margin-left: 30%;
+    margin-right: auto;
+/*    overflow: auto;*/
+  }
+     .blocktext2 {
+    display: block;
+    margin-left: 30%;
+    margin-right: auto;
+/*    overflow: auto;*/
+  }
+  #form3-map{
+    height:75%;
+  }
+    #form3-panel{
+    height:75%;
+  }
 }
 
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
   }
+  .blocktext {
+    display: block;
+    margin-left: auto;
+  /*  margin-left: 20%;*/
+    margin-right: auto;
+/*    overflow: auto;*/
+  }
+
+  .sizing {
+  width: 60%;
+  height: 60%;
+  font-size: 12px;
+/*  text-align: left;*/
+   white-space: normal;
+  }
+    #form3-map{
+    height:50%;
+    }
+    #form3-panel{
+    height: 50%;
+    }
 }
 
 .icon-block {
