@@ -63,7 +63,7 @@ function writeDirectionsSteps(steps) {
   directions.html('');
   for (var i = 0; i < steps.length; i++) {
     
-    directions.append('<li>' + steps[i].instructions + '<br/>' + steps[i].distance.text);
+    directions.append('<li/>' + steps[i].instructions + '<br/>'+ steps[i].distance.text);
     if (typeof steps[i].transit !== "undefined") {
       directions.append('<br/>' + steps[i].transit.arrival_stop.name);
     }
