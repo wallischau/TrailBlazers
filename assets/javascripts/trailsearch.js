@@ -4,10 +4,10 @@
 /* Author: Wallis Chau, Sangeetha Kaliaperumal, Ed Quintana, Kelly Wenzel */
 
 //Global Variables
-const gglGeoKey = "AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4";
+const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 // AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
 // AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU- Wallis Key
-const LIMIT = 10;
+const LIMIT = 40;
 var sourceAddr = "";
 var trailResponse;
 var transitAvail = 0;
@@ -21,6 +21,7 @@ var gl_state = "";
 $( "#startSearch" ).click(function() {
   $( "#pac-input").focus();
 });
+
 
 //Form Submission Function-Passes Values from input form to the Trails API, passes values to Google API
 $(document).ready(function() {
@@ -171,7 +172,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
       		inputele_3.attr('value',response.places[i].name);
       		formele.append(inputele_3);
       		//Creating submit button and adding it to the form
-      		var inputele_4 = $("<input>");
+      		var inputele_4 = $("<input class='sizing'>");
       		inputele_4.attr('type','submit');
       		inputele_4.attr('name','weather_button');
       		inputele_4.val("Trail Weather");
@@ -184,7 +185,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
       		/* End of code to fetch weatherresults.html */
       		/* end of sangeetha's code */
       		//add button transit
-       		var TransitBtn = $("<button>");
+       		var TransitBtn = $("<button class='sizing'>");
        		TransitBtn.addClass("transit-btn btn btn-success btn-sm");
        		TransitBtn.text("Transit Info");
        		TransitBtn.attr('id',`transit-btn-${i}`);
@@ -254,6 +255,7 @@ $("#tablecontent").on("click",".toggler", function(event) {
 $("#tablecontent").on("click",".transit-btn", function(event) {
 	event.preventDefault();
     $("#hide2").show();
+    window.location = '#form3-map';
 	console.log($(this));
    	getTransitInfo($(this).attr('source-Addr'), $(this).attr('latlon-dest'), 0, true);
 });
@@ -262,7 +264,7 @@ $("#tablecontent").on("click",".transit-btn", function(event) {
 $("#submit").click(function(){
     $(".hide1").show();
 });
- 
+
 //CreateMaker
 //create map with markers for each trail
 //hover marker will show trail's name
