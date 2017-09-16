@@ -7,6 +7,8 @@
 //calculate route
 //source could be address or coord pair e.g. (lat,lon)
 function calcRoute(source, dest, index, boolShowMap) {
+  $('#form3-panel').empty();
+  $('#form3-map').empty();
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
   var map = new google.maps.Map(document.getElementById('form3-map'), {
@@ -61,7 +63,7 @@ function writeDirectionsSteps(steps) {
   directions.html('');
   for (var i = 0; i < steps.length; i++) {
     
-    directions.append('<br/><br/>' + steps[i].instructions + '<br/>' + steps[i].distance.text);
+    directions.append('<li>' + steps[i].instructions + '<br/>' + steps[i].distance.text);
     if (typeof steps[i].transit !== "undefined") {
       directions.append('<br/>' + steps[i].transit.arrival_stop.name);
     }
