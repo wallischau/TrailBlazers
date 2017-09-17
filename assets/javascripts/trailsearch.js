@@ -7,7 +7,7 @@
 const gglGeoKey = "AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU";
 // AIzaSyDWwrN_OuE7I9kQXw0oVn7OuYbhyAhhyX4
 // AIzaSyCMmYZlGfP_9f2Prq5sCqvSfpp5D3s7EoU- Wallis Key
-const LIMIT = 40;
+const LIMIT = 20;
 var sourceAddr = "";
 var trailResponse;
 var transitAvail = 0;
@@ -195,9 +195,24 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
        		TransitBtn.attr('source-addr', sourceAddr);
        		console.log(TransitBtn);
        		var buttonTd2 = $('<td>');
-       		buttonTd2.attr('colspan', 5);
+       		buttonTd2.attr('colspan', 3);
        		buttonTd2.append(TransitBtn);
        		trow3.append(buttonTd2);
+      		//add button external trail link 
+       		var xTrailBtn = $("<button class='sizing'>");
+       		xTrailBtn.addClass("xtrail-btn btn btn-success btn-sm");
+       		xTrailBtn.text("More Info");
+       		xTrailBtn.attr('id',`xtrail-btn-${i}`);
+       		xTrailBtn.attr('trail-name', response.places[i].name);
+       		console.log(xTrailBtn);
+       		var aTag = $('<a>');
+       		aTag.attr("href", response.places[i].activities[0].url);
+       		aTag.attr("target", "_blank");
+       		aTag.append(xTrailBtn);
+       		var buttonTd3 = $('<td>');
+       		buttonTd3.attr('colspan', 2);
+       		buttonTd3.append(aTag);
+       		trow3.append(buttonTd3);
        		$("#tablecontent").append(trow3);
 
        		console.log("the trow",trow);
