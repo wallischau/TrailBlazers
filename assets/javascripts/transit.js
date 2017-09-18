@@ -6,6 +6,9 @@
 
 //calculate route
 //source could be address or coord pair e.g. (lat,lon)
+//If boolShowMap is false, only check availability
+//If boolShowMap is true, show map
+//If transit mode is not available, check driving mode
 function calcRoute(source, dest, index, boolShowMap) {
   $('#form3-panel').empty();
   $('#form3-map').empty();
@@ -51,9 +54,21 @@ function calcRoute(source, dest, index, boolShowMap) {
         directionsDisplay.setDirections(response);
         writeDirectionsSteps(directionsDisplay.directions.routes[0].legs[0].steps);
       }
-      else {
-        console.error('DirectionsStatus is ' + status);
-      }
+      else { //status is not ok, change query to driving mode and search again
+        request.travelMode = google.maps.DirectionsTravelMode.DRIVING,
+        directionsService.route(request, function(response, status ) {
+          console.log('here3');
+          if (status == google.maps.DirectionsStatus.OK) {
+            console.log(response);
+            directionsDisplay.setDirections(response);
+            writeDirectionsSteps(directionsDisplay.directions.routes[0].legs[0].steps);
+        
+          }//if
+          else {
+            console.error('DirectionsStatus is ' + status);
+          }
+        }); //.route
+      } //else
     } //else
   });  //route
 }//calroute
