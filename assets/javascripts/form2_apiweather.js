@@ -19,9 +19,10 @@ function callweatherbylatlong(v_lat,v_long, index)
   }).done(function(response)
   {
     var icon = "<img src=https://openweathermap.org/img/w/" + response.weather[0].icon + ".png>";
+    var temp = parseInt(response.main.temp);
     var description = "<p style='margin-bottom:0px; line-height:0.7; font-size:10px;'>" + response.weather[0].description + "</p>";
     console.log(icon);
-    $('#row-' + index + " td.td-weather").html(icon + description);
+    $('#row-' + index + " td.td-weather").html(temp + icon + description);
         console.log("The Current Weather : ", response);
 
 
