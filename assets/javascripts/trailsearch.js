@@ -17,6 +17,9 @@ var transitTime = 0;
 var gl_radius = 1;
 var gl_sourceaddr = "";
 var gl_state = "";
+var markerList = {};
+var image0url = "assets/images/icons/trekking-pink-24.ico";
+var image1url = "assets/images/icons/trekking-blue-32.ico";
 //Sets focus on Starting Address Field after clicking on the Start Search Button
 $( "#startSearch" ).click(function() {
   $( "#pac-input").focus();
@@ -64,7 +67,7 @@ $(document).ready(function() {
 //Description: query Trail API and display data into a table
 function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 	//setup map
-  var image = { url:"assets/images/icons/trekking-pink-24.ico",
+  var image = { url:image0url,
     size: new google.maps.Size(24,24),
     origin: new google.maps.Point(0,0),
     anchor: new google.maps.Point(10,24) };
@@ -265,6 +268,19 @@ $("#tablecontent").on("click",".toggler", function(event) {
 
 });
 
+//hover event on trail table
+$('#tablecontent').on('mouseenter', '.tr-trail', function(event) {
+  var id = $(this).attr('id');
+  //console.log(id);
+  markerList[id].setIcon(image1url);  
+});
+//exit hover event on trail table
+$('#tablecontent').on('mouseout', '.tr-trail', function(event) {
+  var id = $(this).attr('id');
+  //console.log(id);
+  markerList[id].setIcon(image0url);  
+});
+
 
 //transit button onclick
 $("#tablecontent").on("click",".transit-btn", function(event) {
@@ -293,6 +309,10 @@ function createMarker(place, map, img, index) {
 		title: place.name,
 		icon: img
   	});
+    //save marker
+    //markerArray.push(marker);
+    markerList['row-'+index] = marker;
+    console.log(markerList);
   
   	//click event to call transit info
   	google.maps.event.addListener(marker, 'click', function() {
