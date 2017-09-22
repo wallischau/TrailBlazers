@@ -275,7 +275,7 @@ $('#tablecontent').on('mouseenter', '.tr-trail', function(event) {
   markerList[id].setIcon(image1url);  
 });
 //exit hover event on trail table
-$('#tablecontent').on('mouseout', '.tr-trail', function(event) {
+$('#tablecontent').on('mouseleave', '.tr-trail', function(event) {
   var id = $(this).attr('id');
   //console.log(id);
   markerList[id].setIcon(image0url);  
