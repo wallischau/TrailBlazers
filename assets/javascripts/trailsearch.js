@@ -17,9 +17,11 @@ var transitTime = 0;
 var gl_radius = 1;
 var gl_sourceaddr = "";
 var gl_state = "";
+var map;
 var markerList = {};
 var image0url = "assets/images/icons/trekking-pink-24.ico";
 var image1url = "assets/images/icons/trekking-blue-32.ico";
+var screenSize = 1; //large
 //Sets focus on Starting Address Field after clicking on the Start Search Button
 $( "#startSearch" ).click(function() {
   $( "#pac-input").focus();
@@ -63,6 +65,12 @@ $(document).ready(function() {
 	}); //on click search btn
 }); //ready
 
+//detect small screen
+if (window.innerWidth <= 800) {
+  console.log('small');
+  screenSize = 0; //small
+}
+
 //queryTrail API
 //Description: query Trail API and display data into a table
 function queryTrailApi(lat, lon, radius, state, sourceAddr) {
@@ -71,7 +79,7 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
     size: new google.maps.Size(24,24),
     origin: new google.maps.Point(0,0),
     anchor: new google.maps.Point(10,24) };
-  var map = new google.maps.Map(
+    map = new google.maps.Map(
     document.getElementById('form2-map'), {
     zoom: 10,
           MapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -273,6 +281,12 @@ $('#tablecontent').on('mouseenter', '.tr-trail', function(event) {
   var id = $(this).attr('id');
   //console.log(id);
   markerList[id].setIcon(image1url);  
+  //if icon is out of map area, move it to center
+  if (!map.getBounds().contains(markerList[id].getPosition())) {
+    //icon out of map
+    //console.log(markerList[id] + 'icon out of map');
+    map.setCenter(markerList[id].getPosition());
+  }
 });
 //exit hover event on trail table
 $('#tablecontent').on('mouseleave', '.tr-trail', function(event) {
@@ -296,6 +310,29 @@ $("#submit").click(function(){
     $(".hide1").show();
 });
 
+//scroll row into view of table
+function scrollIntoView(ele, container) {
+  console.log(ele);
+  console.log(container);
+  // console.log(ele.scrollTop());
+  var conTop = $(container).offset().top;
+  var conBottom = conTop + $(container).height();
+  var eTop = ele.offset().top;
+  var eBottom = eTop + $(ele).height();
+  console.log(conTop);
+  console.log(conBottom);
+  console.log(eTop);
+  console.log(eBottom);
+    //ele off view port on the top
+  if (eTop < conTop) {
+    $(container).scrollTop(ele[0].offsetTop);
+  }
+    //ele off view port on the bottom
+  else if (eBottom > conBottom){
+    $(container).scrollTop(ele[0].offsetTop  + ele[0].offsetHeight- container.height());
+  }
+}//scrollIntoView
+
 //CreateMaker
 //create map with markers for each trail
 //hover marker will show trail's name
@@ -310,7 +347,6 @@ function createMarker(place, map, img, index) {
 		icon: img
   	});
     //save marker
-    //markerArray.push(marker);
     markerList['row-'+index] = marker;
     console.log(markerList);
   
@@ -319,16 +355,17 @@ function createMarker(place, map, img, index) {
     	$("#hide2").show();
     	infowindow.setContent(place.name);
     	infowindow.open(map, this);
-    	//open new tab to do transit search
+    	//Show the Transit Map on click
    	 	getTransitInfo(sourceAddr, latlonDest, 0, true);
-   	 	// Show the Transit Map on click
+   	 	//  highlight trail row on click
+      scrollIntoView($('#' + $(this)[0].myId), $('.scroll-table'));
   	});
 
   	//hover event on marker
   	google.maps.event.addListener(marker, 'mouseover', function() {
   		console.log($(this)[0].myId);
-		$('#' + $(this)[0].myId + " td.td-name").css("color","green"); 
-		$('#' + $(this)[0].myId ).css("border","2px solid green"); 
+		  $('#' + $(this)[0].myId + " td.td-name").css("color","green"); 
+		  $('#' + $(this)[0].myId ).css("border","2px solid green"); 
   	});
 
   	//mouseout event on marker
