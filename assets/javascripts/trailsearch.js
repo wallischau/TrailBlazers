@@ -230,16 +230,16 @@ function queryTrailApi(lat, lon, radius, state, sourceAddr) {
 			latlonDest = response.places[i].lat + ',' + response.places[i].lon;
 			//update transit availability
 			if (i<9) {
-				setTimeout(getTransitInfo, 100*i, sourceAddr, latlonDest, i, false);
+				setTimeout(getTransitInfo, 100*i, sourceAddr, latlonDest, null, i, false);
 			}
 			else if (i<18) {
-				setTimeout(getTransitInfo, 500*i, sourceAddr, latlonDest, i, false);
+				setTimeout(getTransitInfo, 500*i, sourceAddr, latlonDest, null, i, false);
 			}
 			else if (i<27) {
-				setTimeout(getTransitInfo, 700*i, sourceAddr, latlonDest, i, false);
+				setTimeout(getTransitInfo, 700*i, sourceAddr, latlonDest, null, i, false);
 			}
 			else {
-				setTimeout(getTransitInfo, 800*i, sourceAddr, latlonDest, i, false);
+				setTimeout(getTransitInfo, 800*i, sourceAddr, latlonDest, null, i, false);
 			}
 
 			//update current weather
@@ -302,7 +302,7 @@ $("#tablecontent").on("click",".transit-btn", function(event) {
     $("#hide2").show();
     window.location = '#form3-map';
 	console.log($(this));
-   	getTransitInfo($(this).attr('source-Addr'), $(this).attr('latlon-dest'), 0, true);
+   	getTransitInfo($(this).attr('source-Addr'), $(this).attr('latlon-dest'), $(this).attr('trail-name'), 0, true);
 });
 
 //Figuring out hidding/showing stuff on Submit button click
@@ -356,7 +356,7 @@ function createMarker(place, map, img, index) {
     	infowindow.setContent(place.name);
     	infowindow.open(map, this);
     	//Show the Transit Map on click
-   	 	getTransitInfo(sourceAddr, latlonDest, 0, true);
+   	 	getTransitInfo(sourceAddr, latlonDest, place.name, 0, true);
    	 	//  highlight trail row on click
       scrollIntoView($('#' + $(this)[0].myId), $('.scroll-table'));
   	});
@@ -379,10 +379,10 @@ function createMarker(place, map, img, index) {
 }
 
 // show transit info map and direction
-function getTransitInfo(sourceAddr, destAddr, index, showMap) {
+function getTransitInfo(sourceAddr, destAddr, placeName, index, showMap) {
 	console.log(sourceAddr + " " + index);
 	console.log(destAddr);
-	calcRoute(sourceAddr, destAddr, index, showMap);
+	calcRoute(sourceAddr, destAddr, placeName, index, showMap);
 }
 
 
