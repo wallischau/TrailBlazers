@@ -4,7 +4,9 @@ Description:  TrailBlazers connects those without vehicles to hiking and mountai
 
 Author: Wallis Chau, Sangeetha Kaliaperumal, Ed Quintana, Kelly Wenzel
 
-Date: 9/1/2017
+Date: 9/1/17
+
+Technology: Javascript, JQuery, HTML, CSS, Materialize, Bootstrap, API
 
 My contribution includes: 
 
